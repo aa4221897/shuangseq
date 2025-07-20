@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/ssq_dlt_layout" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:orientation="horizontal" android:id="@id/lottery_result_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginTop="25.0dip" android:layout_marginRight="30.0dip" android:layout_marginBottom="25.0dip">
+        <com.mango.core.view.LotteryResultView2 android:id="@id/lottery_result" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <RelativeLayout android:layout_gravity="center_horizontal" android:orientation="horizontal" android:id="@id/no_detail_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginRight="30.0dip">
+        <TextView android:textSize="22.0sp" android:textColor="@color/color_d91d36" android:id="@id/next_open_time2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="正在开奖" />
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/rl_look_old" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dimens_15_dp" android:layout_marginRight="@dimen/dimens_15_dp">
+        <TextView android:textSize="14.0sp" android:textColor="@color/gray2" android:gravity="right" android:id="@id/tv_look_old" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_marginBottom="@dimen/dimens_10_dp" android:text="@string/history_open" android:drawableRight="@drawable/icon_single_arrow" android:drawablePadding="3.0dip" android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <View android:background="@color/color_f5f5f5" android:layout_width="fill_parent" android:layout_height="@dimen/dimens_10_dp" />
+</LinearLayout>

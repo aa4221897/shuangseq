@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 带Motion效果的布局实现 -->
+<androidx.constraintlayout.motion.widget.MotionLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layoutDescription="@xml/activity_chat_scene"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".deepseek.DeepSeekChatActivity">
+
+    <!-- 消息列表区域 - 优化版本 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/inputLayout"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_chat_message"
+        tools:itemCount="5"
+        android:background="?attr/colorSurface"
+        tools:background="?attr/colorSurface"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingBottom="8dp"
+        android:requiresFadingEdge="vertical"
+        android:scrollbars="vertical"
+        android:fastScrollEnabled="true"/>
+
+    <!-- 输入区域 - 优化版本 -->
+    <LinearLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/messageEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="输入消息"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant" 
+            tools:text="@string/example_message_text"/>
+
+        <Button
+            android:id="@+id/sendButton"
+            style="@style/Widget.MyApplication.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_send"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/optimizeButton"
+            style="@style/Widget.MyApplication.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_optimize"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/knowledgeButton"
+            style="@style/Widget.MyApplication.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_knowledge"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

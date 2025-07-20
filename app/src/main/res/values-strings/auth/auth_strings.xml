@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 认证模块资源 -->
+    <string name="auth_phone_number">手机号:</string>
+    <string name="auth_verification_code">验证码</string>
+    <string name="auth_login">登录</string>
+    <string name="auth_register">注册</string>
+    <string name="auth_forgot_password">忘记密码</string>
+</resources>

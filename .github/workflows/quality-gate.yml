@@ -1,0 +1,45 @@
+name: Quality Gate
+on: [push, pull_request]
+
+jobs:
+  quality-checks:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Run tests with coverage
+      run: ./gradlew test jacocoTestReport
+      
+    - name: Check coverage
+      run: bash scripts/check_coverage.sh
+      
+    - name: Performance benchmark
+      run: |
+        ./gradlew :app:testDebugUnitTest --tests *.PerformanceTest*
+        cat app/build/test-results/testDebugUnitTest/TEST-*.xml | grep "testPerformance_"
+        
+    - name: API Contract Tests
+      run: |
+        ./gradlew :app:connectedAndroidTest -PapiContractTest=true
+        
+    - name: Archive Performance Reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: performance-reports
+        path: |
+          app/build/outputs/benchmark-results/**/*.json
+          app/build/reports/**/*.xml
+        retention-days: 30
+        
+    - name: SonarQube Scan
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        ./gradlew sonarqube \
+          -Dsonar.projectKey=my_android_app \
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 聊天模块资源 -->
+    <string name="chat_message_hint">输入消息...</string>
+    <string name="chat_send_button">发送</string>
+    <string name="chat_notification">新消息</string>
+    <string name="chat_online_status">在线</string>
+    <string name="chat_typing_indicator">正在输入...</string>
+</resources>

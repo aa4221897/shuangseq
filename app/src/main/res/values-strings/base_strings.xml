@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 基础公共资源 -->
+    <string name="app_name">双色球</string>
+    <string name="abc_action_bar_home_description">Navigate home</string>
+    <string name="abc_action_bar_up_description">Navigate up</string>
+    <string name="abc_action_menu_overflow_description">More options</string>
+    
+    <!-- 免责声明 -->
+    <string name="base_disclaimer">免责声明内容...</string>
+    <string name="base_disclaimer_title">免责声明</string>
+    <string name="base_i_understand">我明白了</string>
+</resources>

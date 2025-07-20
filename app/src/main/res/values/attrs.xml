@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 定义背景颜色属性 -->
+    <attr name="colorBackground" format="reference|color" />
+    
+    <!-- 定义禁用状态表面颜色属性 -->
+    <attr name="colorOnSurfaceDisabled" format="reference|color" />
+    
+    <!-- 其他自定义属性可以在这里添加 -->
+</resources>

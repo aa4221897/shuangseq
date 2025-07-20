@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <item
+        android:id="@+id/menuVersionHistory"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="版本历史"
+        app:showAsAction="ifRoom"/>
+        
+    <item
+        android:id="@+id/menuFeedback"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="反馈"
+        app:showAsAction="ifRoom"/>
+        
+    <item
+        android:id="@+id/menuAnalysis"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="分析"
+        app:showAsAction="ifRoom"/>
+</menu>

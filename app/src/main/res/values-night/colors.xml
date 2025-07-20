@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主色调 -->
+    <color name="primaryColor">#BB86FC</color>
+    <color name="primaryDarkColor">#3700B3</color>
+    <color name="primaryLightColor">#6200EE</color>
+    
+    <!-- 次要色调 -->
+    <color name="secondaryColor">#03DAC6</color>
+    <color name="secondaryDarkColor">#018786</color>
+    
+    <!-- 背景色 -->
+    <color name="background">#121212</color>
+    <color name="surface">#1E1E1E</color>
+    
+    <!-- 文字颜色 -->
+    <color name="onPrimary">#000000</color>
+    <color name="onSecondary">#000000</color>
+    <color name="onBackground">#FFFFFF</color>
+    <color name="onSurface">#FFFFFF</color>
+    
+    <!-- 错误颜色 -->
+    <color name="error">#CF6679</color>
+    <color name="onError">#000000</color>
+    
+    <!-- 保留旧命名兼容现有代码 -->
+    <color name="button_background">@color/primaryColor</color>
+    <color name="button_text">@color/onPrimary</color>
+    <color name="accentColor">@color/secondaryColor</color>
+    <!-- 添加缺失的颜色定义 -->
+    <color name="colorBackground">@color/background</color>
+    <color name="colorOnSurfaceDisabled">#61FFFFFF</color>
+    <color name="background_dark">@color/background</color>
+    <color name="surface_dark">@color/surface</color>
+    <color name="onBackground_dark">@color/onBackground</color>
+    <color name="onSurface_dark">@color/onSurface</color>
+</resources>
