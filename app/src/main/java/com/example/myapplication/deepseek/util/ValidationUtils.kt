@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.util
+package com.example.lotteryprediction.deepseek.util
 
-import com.example.myapplication.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
 
 object ValidationUtils {
     fun validateRecords(records: List<LotteryRecord>) {

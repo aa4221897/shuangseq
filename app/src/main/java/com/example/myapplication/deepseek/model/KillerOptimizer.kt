@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
-import com.example.myapplication.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.util.LogUtils
 import java.util.ArrayList
 import java.util.Date
 import java.util.LinkedHashMap

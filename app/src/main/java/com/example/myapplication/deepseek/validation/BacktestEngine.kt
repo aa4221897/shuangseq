@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.validation
+package com.example.lotteryprediction.deepseek.validation
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.LotteryAnalysisEngine
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.LotteryAnalysisEngine
 
 /**
  * 回测验证引擎
@@ -12,7 +12,7 @@ class BacktestEngine(private val analysisEngine: LotteryAnalysisEngine) {
         allRecords: List<LotteryRecord>,
         testRatio: Double = 0.2
     ): BacktestResult {
-        require(testRatio in 0.0..1.0) { "测试比例必须在0-1之间" }
+        require(testRatio in 0.0..1.0) { "测试比例必须�?-1之间" }
         
         val splitIndex = (allRecords.size * (1 - testRatio)).toInt()
         val trainingData = allRecords.subList(0, splitIndex)

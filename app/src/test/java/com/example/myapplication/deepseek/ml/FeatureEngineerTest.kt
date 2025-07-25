@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.ml
+package com.example.lotteryprediction.deepseek.ml
 
-import com.example.myapplication.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -20,7 +20,7 @@ class FeatureEngineerTest {
         
         val features = engineer.extractFeatures(records)
         assertEquals(2, features.size)
-        assertTrue(features.all { it.size > 10 }) // 确保提取了足够多的特征
+        assertTrue(features.all { it.size > 10 }) // 确保提取了足够多的特�?
     }
 
     @Test
@@ -42,7 +42,7 @@ class FeatureEngineerTest {
             doubleArrayOf(4.0, 5.0, 6.0)
         )
         
-        // 模拟特征重要性
+        // 模拟特征重要�?
         engineer.calculateFeatureImportance(features, listOf(1, 0))
         
         val selected = engineer.selectFeatures(features, 0.5)

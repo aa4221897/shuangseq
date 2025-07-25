@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.data
+package com.example.lotteryprediction.deepseek.data
 
-import com.example.myapplication.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
 import kotlinx.coroutines.flow.Flow
 
 interface LotteryRepositoryContract {

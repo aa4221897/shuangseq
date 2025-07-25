@@ -4,8 +4,10 @@ plugins {
     id("jacoco")
 }
 
+apply(from = "../shared-test-config.gradle.kts")
+
 android {
-    namespace = "com.example.myapplication.settings"
+    namespace = "com.example.lotteryprediction.settings"
     compileSdk = 34
 
     defaultConfig {
@@ -18,41 +20,6 @@ android {
             enableUnitTestCoverage = true
         }
     }
-}
-
-jacoco {
-    toolVersion = "0.8.11"
-}
-
-tasks.withType<Test> {
-    configure<JacocoTaskExtension> {
-        isIncludeNoLocationClasses = true
-        excludes = listOf("jdk.internal.*")
-    }
-    finalizedBy("jacocoTestReport")
-}
-
-tasks.register<JacocoReport>("jacocoTestReport") {
-    dependsOn("testDebugUnitTest")
-    
-    reports {
-        xml.required.set(true)
-        html.required.set(true)
-    }
-    
-    classDirectories.setFrom(fileTree("${layout.buildDirectory.get()}/intermediates/javac/debug/classes") {
-        exclude(
-            "**/R.class",
-            "**/R\$*.class",
-            "**/BuildConfig.*",
-            "**/Manifest*.*"
-        )
-    })
-    
-    sourceDirectories.setFrom(files("src/main/java"))
-    executionData.setFrom(fileTree(layout.buildDirectory.get()) {
-        include("jacoco/testDebugUnitTest.exec")
-    })
 }
 
 dependencies {

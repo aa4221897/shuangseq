@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek
+package com.example.lotteryprediction.deepseek
 
 import android.content.Context
 import androidx.lifecycle.lifecycleScope

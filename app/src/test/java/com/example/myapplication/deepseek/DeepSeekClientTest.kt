@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek
+package com.example.lotteryprediction.deepseek
 
-import com.example.myapplication.deepseek.api.DeepSeekApi
+import com.example.lotteryprediction.deepseek.api.DeepSeekApi
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -43,7 +43,7 @@ class DeepSeekClientTest {
 
     @Test
     fun `should retry on SSL handshake failure`() = runBlocking {
-        // 第一次模拟失败，第二次成功
+        // 第一次模拟失败，第二次成�?
         mockWebServer.enqueue(MockResponse()
             .setSocketPolicy(SocketPolicy.FAIL_HANDSHAKE))
         mockWebServer.enqueue(MockResponse()

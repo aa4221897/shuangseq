@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.model.analyzers
+package com.example.lotteryprediction.deepseek.model.analyzers
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.IndicatorAnalyzer
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.IndicatorAnalyzer
 
 /**
  * 和值分析器：分析和值的分布规律
@@ -12,8 +12,7 @@ class SumAnalyzer : IndicatorAnalyzer {
         var minSum = Int.MAX_VALUE
         var maxSum = Int.MIN_VALUE
         
-        // 计算和值分布
-        records.forEach { record ->
+        // 计算和值分�?        records.forEach { record ->
             val sum = record.redNumbers.sum()
             sumStats[sum] = sumStats.getValue(sum) + 1
             minSum = minOf(minSum, sum)

@@ -1,11 +1,10 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.relations.NumberRelation
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.relations.NumberRelation
 
 /**
- * 生克动力学引擎
- * 分析主生/被生、主克/被克关系
+ * 生克动力学引�? * 分析主生/被生、主�?被克关系
  */
 class DynamicsEngine {
     
@@ -47,12 +46,10 @@ class DynamicsEngine {
     fun generatePredictions(analysis: DynamicsAnalysis): Map<String, List<Int>> {
         // 基于生克关系生成预测
         val promotingNumbers = analysis.dominantPromote
-            .filter { it.value > 2 } // 至少出现3次主生
-            .keys.sorted()
+            .filter { it.value > 2 } // 至少出现3次主�?            .keys.sorted()
             
         val inhibitingNumbers = analysis.dominantInhibit
-            .filter { it.value > 2 } // 至少出现3次主克
-            .keys.sorted()
+            .filter { it.value > 2 } // 至少出现3次主�?            .keys.sorted()
             
         return mapOf(
             "promote" to promotingNumbers,

@@ -33,13 +33,13 @@ class PredictionEngine @Inject constructor(
             预测方法: ${method.name}
             算法描述: ${method.description}
             
-            历史开奖数据(最近100期):
+            历史开奖数�?最�?00�?:
             ${history.joinToString("\n") { it.toString() }}
         """.trimIndent()
     }
 
     private fun parsePredictionResult(response: DeepSeekResponse): PredictionResult {
-        // 解析API返回的预测结果
+        // 解析API返回的预测结�?
         // 实现细节省略...
     }
 }

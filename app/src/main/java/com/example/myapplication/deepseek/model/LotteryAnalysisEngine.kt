@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
-import com.example.myapplication.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
 
 /**
  * 双色球多指标分析引擎
@@ -19,8 +19,7 @@ class LotteryAnalysisEngine {
     fun analyze(records: List<LotteryRecord>): AnalysisResult {
         val results = mutableMapOf<String, Any>()
         
-        // 并行执行所有指标分析
-        indicators.forEach { (key, analyzer) ->
+        // 并行执行所有指标分�?        indicators.forEach { (key, analyzer) ->
             results[key] = analyzer.analyze(records)
         }
         

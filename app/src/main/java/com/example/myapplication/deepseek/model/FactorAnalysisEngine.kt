@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
-import com.example.myapplication.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
 
 /**
  * 影响因素分析引擎
@@ -15,8 +15,7 @@ class FactorAnalysisEngine {
         // 2. 计算区间分布影响
         val zoneImpact = analyzeZoneImpact(records)
         
-        // 3. 评估冷热号影响
-        val hotColdImpact = analyzeHotColdImpact(records)
+        // 3. 评估冷热号影�?        val hotColdImpact = analyzeHotColdImpact(records)
         
         return FactorAnalysisResult(
             trendImpact = trendImpact,
@@ -39,12 +38,12 @@ class FactorAnalysisEngine {
     }
     
     private fun analyzeHotColdImpact(records: List<LotteryRecord>): Map<Int, Double> {
-        // 实现冷热号影响分析...
+        // 实现冷热号影响分�?..
         return emptyMap()
     }
     
     private fun calculateCombinedWeights(vararg impacts: Any): Map<Int, Double> {
-        // 实现多因素权重整合...
+        // 实现多因素权重整�?..
         return emptyMap()
     }
 }

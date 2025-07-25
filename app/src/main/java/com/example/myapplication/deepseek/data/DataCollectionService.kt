@@ -1,21 +1,17 @@
-package com.example.myapplication.deepseek.data
+package com.example.lotteryprediction.deepseek.data
 
 import android.content.Context
-import com.example.myapplication.deepseek.model.LotteryRecord
-import com.example.myapplication.deepseek.util.LogUtils
-import com.example.myapplication.deepseek.util.NetworkUtils
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.util.NetworkUtils
 import java.util.Date
 
 /**
  * 数据收集服务
  * 
- * 功能：
- * 1. 收集历史开奖数据
- * 2. 数据清洗和验证
- * 3. 本地/云端存储
+ * 功能�? * 1. 收集历史开奖数�? * 2. 数据清洗和验�? * 3. 本地/云端存储
  * 
- * 使用示例：
- * ```
+ * 使用示例�? * ```
  * val service = DataCollectionService(context)
  * service.addRecords(newRecords)
  * ```
@@ -27,11 +23,9 @@ class DataCollectionService(private val context: Context) {
     private val pendingRecords = mutableListOf<LotteryRecord>()
     private var lastUploadTime = 0L
     private val UPLOAD_INTERVAL = 60 * 1000L // 1分钟上传间隔
-    private val MAX_BATCH_SIZE = 50 // 最大批量上传数量
-
+    private val MAX_BATCH_SIZE = 50 // 最大批量上传数�?
     /**
-     * 添加新记录
-     */
+     * 添加新记�?     */
     fun addRecords(records: List<LotteryRecord>): Boolean {
         return try {
             val validRecords = records.filter { validateRecord(it) }
@@ -45,8 +39,7 @@ class DataCollectionService(private val context: Context) {
             // 本地存储压缩数据
             localDataSource.saveRecords(compressRecords(validRecords))
             
-            // 网络可用时立即上传或加入待上传队列
-            if (NetworkUtils.isConnected(context)) {
+            // 网络可用时立即上传或加入待上传队�?            if (NetworkUtils.isConnected(context)) {
                 val currentTime = System.currentTimeMillis()
                 if (currentTime - lastUploadTime > UPLOAD_INTERVAL || pendingRecords.size >= MAX_BATCH_SIZE) {
                     uploadPendingRecords()
@@ -74,7 +67,7 @@ class DataCollectionService(private val context: Context) {
     }
     
     private fun compressRecords(records: List<LotteryRecord>): ByteArray {
-        // 简单压缩实现 - 实际项目应使用专业压缩库
+        // 简单压缩实�?- 实际项目应使用专业压缩库
         return records.joinToString("|") { record ->
             "${record.redNumbers.joinToString(",")}:${record.blueNumber}:${record.date.time}"
         }.toByteArray()
@@ -92,8 +85,7 @@ class DataCollectionService(private val context: Context) {
             // 高级验证
             val duplicateNumbers = redNumbers.distinct().size != redNumbers.size
             val consecutiveNumbers = redNumbers.sorted().windowed(2).any { (a, b) -> b - a == 1 }
-            val sumValid = redNumbers.sum() in 21..183 // 6-33的最小和最大可能值
-            
+            val sumValid = redNumbers.sum() in 21..183 // 6-33的最小和最大可能�?            
             if (!validRedCount) LogUtils.w(TAG, "Invalid red numbers count: ${redNumbers.size}")
             if (!sorted) LogUtils.w(TAG, "Red numbers not sorted: $redNumbers")
             if (!redRangeValid) LogUtils.w(TAG, "Red number out of range: $redNumbers")

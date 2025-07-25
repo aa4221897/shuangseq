@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.task
+package com.example.lotteryprediction.deepseek.task
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
@@ -6,10 +6,10 @@ import androidx.work.ListenableWorker
 import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
 import androidx.work.testing.TestListenableWorkerBuilder
-import com.example.myapplication.deepseek.data.LotteryDao
-import com.example.myapplication.deepseek.data.AppDatabase
-import com.example.myapplication.deepseek.ml.FeatureEngineer
-import com.example.myapplication.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.data.LotteryDao
+import com.example.lotteryprediction.deepseek.data.AppDatabase
+import com.example.lotteryprediction.deepseek.ml.FeatureEngineer
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Before

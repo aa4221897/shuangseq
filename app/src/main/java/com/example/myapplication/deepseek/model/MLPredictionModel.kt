@@ -1,18 +1,13 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
 import android.util.Log
 // 临时移除BuildConfig引用
 
 /**
- * 基于机器学习的预测模型
- * 
- * 特点：
- * 1. 使用历史数据训练简单模型
- * 2. 提供概率预测
- * 3. 可配置特征工程
- * 
- * 使用示例：
- * ```
+ * 基于机器学习的预测模�? * 
+ * 特点�? * 1. 使用历史数据训练简单模�? * 2. 提供概率预测
+ * 3. 可配置特征工�? * 
+ * 使用示例�? * ```
  * val model = MLPredictionModel()
  * model.train(historyData)
  * val prediction = model.predict(currentIndex)
@@ -45,8 +40,7 @@ class MLPredictionModel : LotteryAnalysisModel() {
 
     private fun trainModel() {
         // 简单特征工程和模型训练逻辑
-        // 实际项目中应使用ML库
-        Log.d(TAG, "Training model with default parameters")
+        // 实际项目中应使用ML�?        Log.d(TAG, "Training model with default parameters")
     }
 
     private fun makePrediction(
@@ -79,8 +73,7 @@ class MLPredictionModel : LotteryAnalysisModel() {
             positionResults = emptyMap(),
             crossPositionResults = emptyMap(),
             zoneEnergies = zoneEnergies,
-            confidence = if (allSame) 1.0 else 0.7 // 全相同数字时置信度更高
-        ).also {
+            confidence = if (allSame) 1.0 else 0.7 // 全相同数字时置信度更�?        ).also {
             if (true) { // 临时替换BuildConfig.DEBUG
                 Log.d(TAG, "Generated prediction with confidence ${it.confidence}")
             }

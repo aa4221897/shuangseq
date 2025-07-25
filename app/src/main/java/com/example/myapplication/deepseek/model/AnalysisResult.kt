@@ -1,11 +1,10 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
 /**
- * 分析结果数据类
- * @param positionResults 同位分析结果
+ * 分析结果数据�? * @param positionResults 同位分析结果
  * @param crossPositionResults 异位分析结果 
  * @param zoneEnergies 分区能量分析结果
- * @param confidence 预测置信度(0-1)
+ * @param confidence 预测置信�?0-1)
  */
 data class AnalysisResult(
     val positionResults: Map<Int, PositionAnalysis>,
@@ -17,8 +16,8 @@ data class AnalysisResult(
      * 同位分析结果
      */
     data class PositionAnalysis(
-        val sizeRelation: Double, // 大小关系强度(-1到1)
-        val parityRelation: Double // 奇偶关系强度(-1到1)
+        val sizeRelation: Double, // 大小关系强度(-1�?)
+        val parityRelation: Double // 奇偶关系强度(-1�?)
     )
 
     /**

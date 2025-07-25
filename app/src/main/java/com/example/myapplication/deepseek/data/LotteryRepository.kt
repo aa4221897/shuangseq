@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.data
+package com.example.lotteryprediction.deepseek.data
 
-import com.example.myapplication.deepseek.model.LotteryRecord
-import com.example.myapplication.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.util.LogUtils
 import java.util.ArrayList
 import java.util.Date
 import java.util.List

@@ -1,11 +1,10 @@
-package com.example.myapplication.deepseek.data
+package com.example.lotteryprediction.deepseek.data
 
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 /**
- * 双色球数据获取接口
- */
+ * 双色球数据获取接�? */
 interface DataSource {
     @GET("api/lottery/history")
     suspend fun getHistory(

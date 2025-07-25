@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.knowledge
+package com.example.lotteryprediction.deepseek.knowledge
 
-import com.example.myapplication.deepseek.data.LayoutDataExtractor
-import com.example.myapplication.deepseek.data.LotteryLayoutInfo
+import com.example.lotteryprediction.deepseek.data.LayoutDataExtractor
+import com.example.lotteryprediction.deepseek.data.LotteryLayoutInfo
 
 /**
  * 布局知识管理
@@ -14,8 +14,7 @@ object LayoutKnowledge {
         layouts.clear()
         layouts.addAll(extractor.extractLotteryData())
         
-        // 更新到主知识库
-        KnowledgeBase.update("layout_info", """
+        // 更新到主知识�?        KnowledgeBase.update("layout_info", """
             ## 双色球布局信息 ##
             有效布局数量: ${layouts.size}
             包含走势图的布局: ${layouts.filter { it.containsResultView }.size}

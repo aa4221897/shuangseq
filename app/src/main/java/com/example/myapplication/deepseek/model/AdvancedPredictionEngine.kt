@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.relations.NumberRelation
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.relations.NumberRelation
 
 /**
  * 高级预测引擎
@@ -22,8 +22,7 @@ class AdvancedPredictionEngine(
         // 2. 相生相克关系分析
         val relations = relationEngine.analyzeHistoricalRelations(records)
         
-        // 3. 生克动力学分析
-        val dynamics = dynamicsEngine.analyzeRelations(records)
+        // 3. 生克动力学分�?        val dynamics = dynamicsEngine.analyzeRelations(records)
         
         // 4. 生成综合预测
         val baseNumbers = relationEngine.generatePredictions(records.last(), relations)

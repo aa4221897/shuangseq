@@ -1,8 +1,8 @@
-package com.example.myapplication.deepseek.model.v2
+package com.example.lotteryprediction.deepseek.model.v2
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.AnalysisStrategy
-import com.example.myapplication.deepseek.model.AnalysisResult
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.AnalysisStrategy
+import com.example.lotteryprediction.deepseek.model.AnalysisResult
 
 class ModularAnalysisEngine(
     private val strategies: Map<String, AnalysisStrategy>

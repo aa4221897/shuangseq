@@ -24,13 +24,13 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.value = AuthUiState.Loading
             try {
-                // 验证手机号格式
+                // 验证手机号格�?
                 if (!phone.matches(Regex("^1[3-9]\\d{9}$"))) {
                     _uiState.value = AuthUiState.Error("手机号格式不正确")
                     return@launch
                 }
                 
-                // 频率限制检查
+                // 频率限制检�?
                 val currentTime = System.currentTimeMillis()
                 if (currentTime - lastRequestTime < MIN_REQUEST_INTERVAL) {
                     _uiState.value = AuthUiState.Error("请求过于频繁，请稍后再试")
@@ -41,7 +41,7 @@ class AuthViewModel @Inject constructor(
                 lastRequestTime = currentTime
                 _uiState.value = AuthUiState.CodeSent
             } catch (e: Exception) {
-                _uiState.value = AuthUiState.Error(e.message ?: "请求验证码失败")
+                _uiState.value = AuthUiState.Error(e.message ?: "请求验证码失�?)
             }
         }
     }
@@ -54,7 +54,7 @@ class AuthViewModel @Inject constructor(
                 tokenManager.saveToken(token)
                 _uiState.value = AuthUiState.Success
             } catch (e: Exception) {
-                _uiState.value = AuthUiState.Error(e.message ?: "验证码错误")
+                _uiState.value = AuthUiState.Error(e.message ?: "验证码错�?)
             }
         }
     }

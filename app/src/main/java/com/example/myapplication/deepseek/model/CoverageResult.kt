@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
 data class CoverageResult(
     val isFullCoverage: Boolean,

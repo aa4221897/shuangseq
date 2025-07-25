@@ -1,11 +1,11 @@
-package com.example.myapplication.deepseek.task
+package com.example.lotteryprediction.deepseek.task
 
 import android.content.Context
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
 import android.text.TextPaint
 import android.text.style.TextAppearanceSpan
-import com.example.myapplication.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.util.LogUtils
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
@@ -42,15 +42,13 @@ object ReportExporter {
             var canvas = page.canvas
             val styledText = content.split("\n").joinToString("\n") { line ->
                 if (line.startsWith("Feature") || line.contains(":")) {
-                    // 加粗标题行
-                    "**$line**"
+                    // 加粗标题�?                    "**$line**"
                 } else {
                     line
                 }
             }
             
-            // 简单布局 - 实际项目应使用更专业的PDF生成库
-            var yPos = 50f
+            // 简单布局 - 实际项目应使用更专业的PDF生成�?            var yPos = 50f
             styledText.split("\n").forEach { line ->
                 canvas.drawText(line, 50f, yPos, paint)
                 yPos += 30f

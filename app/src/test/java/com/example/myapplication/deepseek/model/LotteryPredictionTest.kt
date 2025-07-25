@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
-import com.example.myapplication.deepseek.util.Logger
+import com.example.lotteryprediction.deepseek.util.Logger
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -34,8 +34,7 @@ class LotteryPredictionTest {
         val validator = CoverageValidator(testData)
         val testRecord = testData.last()
         
-        // 确保至少1个胆码命中
-        val danma = testRecord.redNumbers.take(1) + (1..33)
+        // 确保至少1个胆码命�?        val danma = testRecord.redNumbers.take(1) + (1..33)
             .filterNot { testRecord.redNumbers.contains(it) }
             .shuffled()
             .take(2)
@@ -68,8 +67,7 @@ class LotteryPredictionTest {
 
     @Test
     fun testMinimalDataPrediction() {
-        val minimalData = generateTestData(4) // 使用4条数据，小于要求的5条
-        println("Testing with ${minimalData.size} records")
+        val minimalData = generateTestData(4) // 使用4条数据，小于要求�?�?        println("Testing with ${minimalData.size} records")
         
         // Create a simple mock logger
         val mockLog = object : Logger {

@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.task
+package com.example.lotteryprediction.deepseek.task
 
 import android.app.Dialog
 import android.content.Context
@@ -8,8 +8,8 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import com.example.myapplication.R
-import com.example.myapplication.databinding.DialogCompareReportsBinding
+import com.example.lotteryprediction.R
+import com.example.lotteryprediction.databinding.DialogCompareReportsBinding
 
 class CompareReportsDialog : DialogFragment() {
     private lateinit var binding: DialogCompareReportsBinding
@@ -40,7 +40,7 @@ class CompareReportsDialog : DialogFragment() {
             setView(binding.root)
             setTitle(R.string.report_compare_title)
             setPositiveButton(getString(android.R.string.ok)) { _, _ ->
-            setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                if (binding.spinnerReport1.selectedItemPosition == binding.spinnerReport2.selectedItemPosition) {
                     Toast.makeText(context, "Please select different reports", Toast.LENGTH_SHORT).show()
                 } else {
                     val report1Id = reports[binding.spinnerReport1.selectedItemPosition].first

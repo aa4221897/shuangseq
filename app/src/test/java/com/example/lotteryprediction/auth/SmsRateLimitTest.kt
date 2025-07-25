@@ -22,25 +22,25 @@ class SmsRateLimitTest {
 
     @Test
     fun testSmsSendInterval() {
-        // 第一次发送成功
+        // 第一次发送成�?
         assertTrue(authViewModel.sendVerificationCode(testPhone))
         
-        // 立即再次发送应该失败
+        // 立即再次发送应该失�?
         assertFalse(authViewModel.sendVerificationCode(testPhone))
         
         // 模拟等待1分钟
         Thread.sleep(TimeUnit.MINUTES.toMillis(1))
         
-        // 再次发送应该成功
+        // 再次发送应该成�?
         assertTrue(authViewModel.sendVerificationCode(testPhone))
     }
 
     @Test
     fun testInvalidPhoneFormat() {
-        // 测试短于11位
+        // 测试短于11�?
         assertFalse(authViewModel.sendVerificationCode("1380013800"))
         
-        // 测试非数字
+        // 测试非数�?
         assertFalse(authViewModel.sendVerificationCode("1380013800a"))
         
         // 测试正确格式

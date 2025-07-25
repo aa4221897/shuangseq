@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.task
+package com.example.lotteryprediction.deepseek.task
 
 import android.content.Context
 import androidx.work.Constraints
@@ -7,24 +7,19 @@ import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
-import com.example.myapplication.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.util.LogUtils
 import java.util.concurrent.TimeUnit
 
 /**
- * WorkManager配置类
- * 
- * 功能：
- * 1. 配置所有后台任务
- * 2. 设置执行频率和约束
- * 3. 管理任务生命周期
+ * WorkManager配置�? * 
+ * 功能�? * 1. 配置所有后台任�? * 2. 设置执行频率和约�? * 3. 管理任务生命周期
  */
 object WorkManagerConfig {
     private const val FEATURE_OPTIMIZATION_WORK_NAME = "feature_optimization_work"
     private val statusListeners = mutableListOf<(String, Boolean) -> Unit>()
     
     /**
-     * 初始化所有后台任务
-     */
+     * 初始化所有后台任�?     */
     fun setupAllWorks(context: Context) {
         setupFeatureOptimizationWork(context)
         monitorWorkStatus(context)
@@ -47,8 +42,7 @@ object WorkManagerConfig {
             .build()
 
         val workRequest = PeriodicWorkRequestBuilder<FeatureOptimizationCheckpoint>(
-            30, // 30天间隔
-            TimeUnit.DAYS
+            30, // 30天间�?            TimeUnit.DAYS
         )
             .setConstraints(constraints)
             .build()
@@ -61,15 +55,13 @@ object WorkManagerConfig {
     }
 
     /**
-     * 取消所有后台任务
-     */
+     * 取消所有后台任�?     */
     fun cancelAllWorks(context: Context) {
         WorkManager.getInstance(context).cancelAllWork()
     }
     
     /**
-     * 监控任务执行状态
-     */
+     * 监控任务执行状�?     */
     private fun monitorWorkStatus(context: Context) {
         WorkManager.getInstance(context)
             .getWorkInfosForUniqueWorkLiveData(FEATURE_OPTIMIZATION_WORK_NAME)

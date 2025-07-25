@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.v2.ModularAnalysisEngine
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.v2.ModularAnalysisEngine
 
 class EngineAdapter {
     private val modularEngine = ModularAnalysisEngine(

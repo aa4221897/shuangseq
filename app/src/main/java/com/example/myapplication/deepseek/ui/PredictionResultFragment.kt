@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.ui
+package com.example.lotteryprediction.deepseek.ui
 
-import com.example.myapplication.R
+import com.example.lotteryprediction.R
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import com.example.myapplication.databinding.FragmentPredictionResultBinding
+import com.example.lotteryprediction.databinding.FragmentPredictionResultBinding
 
 class PredictionResultFragment : Fragment() {
     private var _binding: FragmentPredictionResultBinding? = null
@@ -42,7 +42,7 @@ class PredictionResultFragment : Fragment() {
             viewModel.uiState.collect { state ->
                 when (state) {
                     is LotteryViewModel.LotteryUiState.Loading -> {
-                        logger.d("PredictionResult", "显示加载状态")
+                        logger.d("PredictionResult", "显示加载状�?)
                         binding.progressBar.visibility = View.VISIBLE
                         binding.contentGroup.visibility = View.GONE
                         binding.errorText.visibility = View.GONE
@@ -68,7 +68,7 @@ class PredictionResultFragment : Fragment() {
                     is LotteryViewModel.LotteryUiState.Error -> {
                         logger.e(
                             "PredictionResult", 
-                            "显示错误状态: ${state.message}"
+                            "显示错误状�? ${state.message}"
                         )
                         binding.progressBar.visibility = View.GONE
                         binding.contentGroup.visibility = View.GONE
@@ -101,7 +101,7 @@ class PredictionResultFragment : Fragment() {
                             group1Numbers.text = groups[0].joinToString(", ")
                             group2Numbers.text = groups[1].joinToString(", ")
                             group3Numbers.text = groups[2].joinToString(", ")
-                            logger.d("PredictionResult", "显示3组数据")
+                            logger.d("PredictionResult", "显示3组数�?)
                         }
                         else -> {
                             group1Numbers.text = getString(R.string.prediction_invalid_group_data)
@@ -113,15 +113,15 @@ class PredictionResultFragment : Fragment() {
                     
                     coverageInfo.text = when {
                         validation.isFullCoverage -> {
-                            logger.d("PredictionResult", "显示完整覆盖状态")
+                            logger.d("PredictionResult", "显示完整覆盖状�?)
                             getString(R.string.prediction_full_coverage)
+                        }
+                        validation.totalCovered >= 5 -> {
+                            logger.d("PredictionResult", "显示良好覆盖状�?)
                             getString(R.string.prediction_good_coverage, validation.totalCovered)
-                            getString(R.string.prediction_partial_coverage, validation.totalCovered)
-                            logger.d("PredictionResult", "显示良好覆盖状态")
-                            getString(R.string.prediction_good_coverage, validation.totalCovered)
-                            getString(R.string.prediction_partial_coverage, validation.totalCovered)
-                            logger.d("PredictionResult", "显示良好覆盖状态")
-                            getString(R.string.prediction_good_coverage, validation.totalCovered)
+                        }
+                        else -> {
+                            logger.d("PredictionResult", "显示部分覆盖状�?)
                             getString(R.string.prediction_partial_coverage, validation.totalCovered)
                         }
                     }

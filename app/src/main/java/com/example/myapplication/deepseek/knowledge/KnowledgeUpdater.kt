@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.knowledge
+package com.example.lotteryprediction.deepseek.knowledge
 
-import com.example.myapplication.deepseek.analysis.TrendAnalysis
-import com.example.myapplication.deepseek.data.DataSource
+import com.example.lotteryprediction.deepseek.analysis.TrendAnalysis
+import com.example.lotteryprediction.deepseek.data.DataSource
 
 /**
  * 知识库数据更新器
@@ -12,15 +12,13 @@ class KnowledgeUpdater(
 ) {
     
     suspend fun refreshKnowledgeBase() {
-        // 1. 获取最新数据
-        val history = dataSource.getHistory()
+        // 1. 获取最新数�?        val history = dataSource.getHistory()
         val trendData = dataSource.getTrendChart()
         
         // 2. 分析走势
         val analysis = trendAnalyzer.analyzeTrends(history)
         
-        // 3. 更新知识库
-        KnowledgeBase.apply {
+        // 3. 更新知识�?        KnowledgeBase.apply {
             update("history_data", history)
             update("trend_data", trendData)
             update("trend_analysis", analysis)

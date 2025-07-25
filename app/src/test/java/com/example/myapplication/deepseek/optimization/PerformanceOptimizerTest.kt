@@ -1,8 +1,8 @@
-package com.example.myapplication.deepseek.optimization
+package com.example.lotteryprediction.deepseek.optimization
 
-import com.example.myapplication.deepseek.api.DeepSeekApi
-import com.example.myapplication.deepseek.model.AdvancedPredictionEngine
-import com.example.myapplication.deepseek.util.AndroidLogger
+import com.example.lotteryprediction.deepseek.api.DeepSeekApi
+import com.example.lotteryprediction.deepseek.model.AdvancedPredictionEngine
+import com.example.lotteryprediction.deepseek.util.AndroidLogger
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -34,7 +34,7 @@ class PerformanceOptimizerTest {
             optimizer.getCurrentOptimizationLevel()
         )
         
-        // 模拟无改进历史
+        // 模拟无改进历�?
         optimizer.applyOptimizations("").apply {
             assertEquals(0, improvements.size)
         }
@@ -45,7 +45,7 @@ class PerformanceOptimizerTest {
         
         // 模拟过多改进
         optimizer.applyOptimizations("").apply {
-            assertEquals(4, improvements.size) // AGGRESSIVE模式默认4个改进
+            assertEquals(4, improvements.size) // AGGRESSIVE模式默认4个改�?
         }
         assertEquals(
             PerformanceOptimizer.OptimizationLevel.CONSERVATIVE,

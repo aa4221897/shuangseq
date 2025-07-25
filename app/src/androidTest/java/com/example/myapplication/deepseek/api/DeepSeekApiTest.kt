@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.api
+package com.example.lotteryprediction.deepseek.api
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.myapplication.deepseek.util.AndroidLogger
+import com.example.lotteryprediction.deepseek.util.AndroidLogger
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer

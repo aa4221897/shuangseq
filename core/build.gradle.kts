@@ -1,14 +1,31 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
     namespace = "com.example.lotteryprediction.core"
     compileSdk = 34
+    
+    sourceSets.main {
+        manifest.srcFile("src/main/AndroidManifest.xml")
+    }
+    
+    packagingOptions {
+        excludes += setOf("META-INF/*.version")
+    }
 
     defaultConfig {
         minSdk = 26
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    
+    kotlinOptions {
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -16,7 +33,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+        kotlinCompilerExtensionVersion = Versions.compose
     }
 }
 
@@ -31,5 +48,5 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     
     // 日志工具
-    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation(libs.timber)
 }

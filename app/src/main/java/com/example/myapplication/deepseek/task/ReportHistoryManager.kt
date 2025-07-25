@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.task
+package com.example.lotteryprediction.deepseek.task
 
 import android.content.Context
-import com.example.myapplication.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.util.LogUtils
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.ArrayList
@@ -21,8 +21,7 @@ object ReportHistoryManager {
         val historyDir = File(context.filesDir, "feature_reports/history")
         historyDir.mkdirs()
 
-        // 保存最新报告
-        val latestFile = File(context.filesDir, "feature_reports/latest_report.txt")
+        // 保存最新报�?        val latestFile = File(context.filesDir, "feature_reports/latest_report.txt")
         latestFile.writeText(content)
 
         // 保存历史版本
@@ -30,8 +29,7 @@ object ReportHistoryManager {
         val historyFile = File(historyDir, "report_$timestamp.txt")
         historyFile.writeText(content)
 
-        // 清理旧报告
-        cleanupOldReports(historyDir)
+        // 清理旧报�?        cleanupOldReports(historyDir)
     }
 
     fun getHistoryReports(context: Context): List<Pair<String, String>> {

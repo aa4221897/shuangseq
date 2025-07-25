@@ -1,16 +1,12 @@
-package com.example.myapplication.deepseek.validation
+package com.example.lotteryprediction.deepseek.validation
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.FactorAnalysisEngine
-import com.example.myapplication.deepseek.model.LotteryAnalysisEngine
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.FactorAnalysisEngine
+import com.example.lotteryprediction.deepseek.model.LotteryAnalysisEngine
 import kotlin.math.roundToInt
 
 /**
- * 增强版回测验证引擎
- * 新增功能：
- * 1. 多维度验证指标
- * 2. 影响因素敏感度分析
- * 3. 预测方案优化建议
+ * 增强版回测验证引�? * 新增功能�? * 1. 多维度验证指�? * 2. 影响因素敏感度分�? * 3. 预测方案优化建议
  */
 class EnhancedBacktestEngine(
     private val analysisEngine: LotteryAnalysisEngine,
@@ -64,12 +60,12 @@ class EnhancedBacktestEngine(
     }
     
     private fun calculateHitStatistics(predictions: List<PredictionCase>): HitStatistics {
-        // 实现命中率统计...
+        // 实现命中率统�?..
         return HitStatistics()
     }
     
     private fun analyzeFactorSensitivity(predictions: List<PredictionCase>): Map<String, Double> {
-        // 实现因素敏感度分析...
+        // 实现因素敏感度分�?..
         return emptyMap()
     }
     

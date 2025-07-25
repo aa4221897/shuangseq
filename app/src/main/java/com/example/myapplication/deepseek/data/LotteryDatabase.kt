@@ -1,14 +1,14 @@
-package com.example.myapplication.deepseek.data
+package com.example.lotteryprediction.deepseek.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.myapplication.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
 
 @Database(
     entities = [LotteryRecord::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -20,11 +20,23 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
+                // 使用applicationContext是必要的，因为Room需要应用级别的Context
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "lottery_database"
-                ).build()
+                )
+                .addCallback(object : RoomDatabase.Callback() {
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
+                        // 在新线程执行索引创建
+                        CoroutineScope(Dispatchers.IO).launch {
+                            getInstance(context).lotteryDao().createPeriodIndex()
+                            getInstance(context).lotteryDao().createNumbersIndex()
+                        }
+                    }
+                })
+                .build()
                 INSTANCE = instance
                 instance
             }

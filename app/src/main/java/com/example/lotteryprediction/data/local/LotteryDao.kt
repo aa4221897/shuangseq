@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface LotteryDao {
-    // 开奖结果操作
+    // 开奖结果操�?
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertResults(results: List<LotteryResult>)
 

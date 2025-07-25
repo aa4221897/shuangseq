@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
 import kotlin.math.pow
 import kotlin.math.max
@@ -33,10 +33,8 @@ class ZoneEnergyAnalysisModel : LotteryAnalysisModel() {
         
         // 计算各分区历史出现次数和重号频率
         val zoneCounts = LotteryAnalysisModel.Zone.values().associateWith { mutableListOf<Int>() }
-        repeatNumberStats.clear() // 清空之前的统计数据
-        
-        val startIdx = max(0, currentIndex - 10) // 最多回溯10期
-        // 统计重号频率
+        repeatNumberStats.clear() // 清空之前的统计数�?        
+        val startIdx = max(0, currentIndex - 10) // 最多回�?0�?        // 统计重号频率
         for (i in startIdx until currentIndex) {
             history[i].redNumbers.forEach { num ->
                 if (history[i+1].redNumbers.contains(num)) {
@@ -54,17 +52,14 @@ class ZoneEnergyAnalysisModel : LotteryAnalysisModel() {
                 counts[zone] = counts.getOrDefault(zone, 0) + (1 * weight).toInt()
             }
             
-            // 将当前计数添加到zoneCounts中
-            LotteryAnalysisModel.Zone.values().forEach { zone ->
+            // 将当前计数添加到zoneCounts�?            LotteryAnalysisModel.Zone.values().forEach { zone ->
                 zoneCounts[zone]?.add(counts.getOrDefault(zone, 0))
             }
         }
         
-        // 计算加权能量值
-        val zoneEnergies = mutableMapOf<LotteryAnalysisModel.Zone, Double>()
+        // 计算加权能量�?        val zoneEnergies = mutableMapOf<LotteryAnalysisModel.Zone, Double>()
         
-        // 计算各分区能量值
-        LotteryAnalysisModel.Zone.values().forEach { zone ->
+        // 计算各分区能量�?        LotteryAnalysisModel.Zone.values().forEach { zone ->
             val counts = zoneCounts[zone] ?: emptyList()
             zoneEnergies[zone] = if (counts.isNotEmpty()) calculateWeightedAverage(counts.map { it.toDouble() }) else 0.0
         }
@@ -85,8 +80,7 @@ class ZoneEnergyAnalysisModel : LotteryAnalysisModel() {
         if (energies.isEmpty()) return 0.0
         val avgEnergy = energies.values.average()
         val variance = energies.values.map { (it - avgEnergy).pow(2) }.average()
-        // 考虑重号因素提高置信度
-        val repeatFactor = if (repeatNumberStats.isNotEmpty()) {
+        // 考虑重号因素提高置信�?        val repeatFactor = if (repeatNumberStats.isNotEmpty()) {
             1.0 + (repeatNumberStats.values.average() * 0.05).coerceAtMost(0.2)
         } else {
             1.0

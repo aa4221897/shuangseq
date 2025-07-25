@@ -1,0 +1,8 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.lotteryprediction.core" >
+4
+5    <uses-sdk android:minSdkVersion="26" />
+5-->C:\Users\Administrator\AndroidStudioProjects\MyApplication\core\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12764476793938885244.xml
+6
+7</manifest>

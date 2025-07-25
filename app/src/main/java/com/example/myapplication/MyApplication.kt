@@ -1,8 +1,8 @@
-package com.example.myapplication
+package com.example.lotteryprediction
 
 import android.app.Application
-import com.example.myapplication.deepseek.task.WorkManagerConfig
-import com.example.myapplication.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.task.WorkManagerConfig
+import com.example.lotteryprediction.deepseek.util.LogUtils
 
 class MyApplication : Application() {
     override fun onCreate() {

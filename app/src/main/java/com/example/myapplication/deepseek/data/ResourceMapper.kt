@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.data
+package com.example.lotteryprediction.deepseek.data
 
 import android.content.Context
-import com.example.myapplication.R
+import com.example.lotteryprediction.R
 
 /**
  * 资源映射服务

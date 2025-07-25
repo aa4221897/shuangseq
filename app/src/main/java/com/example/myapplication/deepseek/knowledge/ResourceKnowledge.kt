@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.knowledge
+package com.example.lotteryprediction.deepseek.knowledge
 
-import com.example.myapplication.deepseek.data.ResourceMapper
+import com.example.lotteryprediction.deepseek.data.ResourceMapper
 
 /**
  * 资源知识管理
@@ -12,7 +12,7 @@ object ResourceKnowledge {
         val layoutMappings = mapper.getLayoutToDrawableMap()
         
         KnowledgeBase.update("resource_mapping", """
-            ## 走势图相关资源 ##
+            ## 走势图相关资�?##
             关键资源数量: ${trendResources.size}
             
             ## 布局-资源映射 ##

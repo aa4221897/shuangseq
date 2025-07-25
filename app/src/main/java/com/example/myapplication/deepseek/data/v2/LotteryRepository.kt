@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.data.v2
+package com.example.lotteryprediction.deepseek.data.v2
 
-import com.example.myapplication.deepseek.data.LotteryDao
-import com.example.myapplication.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.data.LotteryDao
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

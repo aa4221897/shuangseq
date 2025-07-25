@@ -1,18 +1,17 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
-import com.example.myapplication.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
 
 /**
  * 复合分析引擎
- * 整合传统统计分析与相生相克关系分析
- */
+ * 整合传统统计分析与相生相克关系分�? */
 class CompositeAnalysisEngine(
     private val classicEngine: LotteryAnalysisEngine,
     private val relationEngine: DeepRelationEngine
 ) {
     
     fun analyzeAndPredict(records: List<LotteryRecord>): CompositePrediction {
-        require(records.size >= 10) { "至少需要10期历史数据" }
+        require(records.size >= 10) { "至少需�?0期历史数�? }
         
         // 1. 传统统计分析
         val classicResult = classicEngine.analyze(records)
@@ -39,9 +38,7 @@ class CompositeAnalysisEngine(
         classicResult: Any,
         relationPredictions: Map<Int, List<Pair<Int, Double>>>
     ): Map<Int, List<Int>> {
-        // 实现两种预测结果的融合算法
-        // 这里简化处理：取关系分析的前3个推荐号码
-        return relationPredictions.mapValues { (_, nums) ->
+        // 实现两种预测结果的融合算�?        // 这里简化处理：取关系分析的�?个推荐号�?        return relationPredictions.mapValues { (_, nums) ->
             nums.take(3).map { it.first }
         }
     }

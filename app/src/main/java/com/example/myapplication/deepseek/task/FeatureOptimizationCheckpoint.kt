@@ -1,13 +1,13 @@
-package com.example.myapplication.deepseek.task
+package com.example.lotteryprediction.deepseek.task
 
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.example.myapplication.deepseek.ml.FeatureEngineer
-import com.example.myapplication.deepseek.model.LotteryRecord
-import com.example.myapplication.deepseek.util.LogUtils
-import com.example.myapplication.deepseek.data.AppDatabase
-import com.example.myapplication.deepseek.task.ReportHistoryManager
+import com.example.lotteryprediction.deepseek.ml.FeatureEngineer
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.data.AppDatabase
+import com.example.lotteryprediction.deepseek.task.ReportHistoryManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.math.abs
@@ -15,9 +15,8 @@ import kotlin.math.abs
 /**
  * 特征工程优化检查点
  * 
- * 每月1日凌晨4点自动执行：
- * 1. 评估当前特征有效性
- * 2. 生成优化建议
+ * 每月1日凌�?点自动执行：
+ * 1. 评估当前特征有效�? * 2. 生成优化建议
  * 3. 记录特征性能指标
  */
 class FeatureOptimizationCheckpoint(
@@ -25,7 +24,7 @@ class FeatureOptimizationCheckpoint(
     workerParams: WorkerParameters,
     private val database: AppDatabase? = null,
     private val featureEngineer: FeatureEngineer = FeatureEngineer()
-) : CoroutineWorker(context, workerParams) {
+) : CoroutineWorker<Unit>(context, workerParams) {
     private val TAG = "FeatureOptimization"
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
@@ -40,8 +39,7 @@ class FeatureOptimizationCheckpoint(
         }
 
         try {
-            // 提取并评估特征
-            val features = featureEngineer.extractFeatures(dataset)
+            // 提取并评估特�?            val features = featureEngineer.extractFeatures(dataset)
             val normalizedFeatures = featureEngineer.normalizeFeatures(features)
             
             // 生成报告
@@ -57,7 +55,7 @@ class FeatureOptimizationCheckpoint(
     }
 
     private suspend fun loadDataset(): List<LotteryRecord> {
-        return loadDatasetFrom(AppDatabase.getInstance(applicationContext))
+        return loadDatasetFrom(AppDatabase.getInstance(context))
     }
     
     private suspend fun loadDatasetFrom(database: AppDatabase): List<LotteryRecord> {
@@ -81,8 +79,7 @@ class FeatureOptimizationCheckpoint(
             appendLine("Total features: ${features.size}")
             appendLine("Feature dimensions: ${features.firstOrNull()?.size ?: 0}")
             
-            // 计算特征重要性
-            val importanceScores = calculateFeatureImportance(features)
+            // 计算特征重要�?            val importanceScores = calculateFeatureImportance(features)
             appendLine("\nFeature Importance Scores:")
             importanceScores.forEachIndexed { index, score ->
                 appendLine("Feature $index: ${"%.2f".format(score)}")
@@ -91,8 +88,7 @@ class FeatureOptimizationCheckpoint(
     }
     
     private fun calculateFeatureImportance(features: List<DoubleArray>): DoubleArray {
-        // 简单实现 - 实际项目应使用专业ML库
-        val dims = features.firstOrNull()?.size ?: return doubleArrayOf()
+        // 简单实�?- 实际项目应使用专业ML�?        val dims = features.firstOrNull()?.size ?: return doubleArrayOf()
         val scores = DoubleArray(dims) { 0.0 }
         
         features.forEach { feature ->
@@ -107,8 +103,12 @@ class FeatureOptimizationCheckpoint(
 
     private fun saveReport(report: String) {
         try {
-            ReportHistoryManager.saveReport(applicationContext, report)
+            ReportHistoryManager.saveReport(context, report)
             LogUtils.i(TAG, "Report saved with history version")
+        } catch (e: IllegalStateException) {
+            LogUtils.e(TAG, "Invalid context state", e)
+        } catch (e: SecurityException) {
+            LogUtils.e(TAG, "Permission denied", e)
         } catch (e: Exception) {
             LogUtils.e(TAG, "Failed to save report", e)
         }

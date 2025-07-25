@@ -1,7 +1,7 @@
-package com.example.myapplication.di
+package com.example.lotteryprediction.di
 
-import com.example.myapplication.deepseek.data.v2.LotteryRepository
-import com.example.myapplication.deepseek.data.LotteryDao
+import com.example.lotteryprediction.deepseek.data.v2.LotteryRepository
+import com.example.lotteryprediction.deepseek.data.LotteryDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

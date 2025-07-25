@@ -1,8 +1,8 @@
 plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
-    alias(libs.plugins.hilt.android) apply false
-    kotlin("kapt") version "1.9.22"
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt.android)
+    kotlin("kapt")
     id("jacoco")
     id("com.diffplug.spotless") version "6.25.0"
 }
@@ -160,79 +160,22 @@ kapt {
 }
 
 dependencies {
-    // Core模块
-    implementation(project(":core"))
-    
-    // DeepSeek SDK
-    implementation(libs.deepseek.sdk)
-    
-    // Hilt依赖
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-    
-    // kapt配置
-    kaptTest(libs.jmh.generator.annprocess)
-    kaptAndroidTest(libs.androidx.room.compiler)
-    
-    // 测试依赖 - 统一版本号
-    testImplementation(libs.junit)
-    testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.androidx.arch.core.testing)
-    testImplementation(libs.mockito.core)
-    testImplementation(libs.mockito.kotlin)
-    testImplementation(libs.robolectric)
-    testImplementation(libs.androidx.test.core)
-    testImplementation(libs.androidx.junit)
-    // 移除重复的mockito-android依赖
-    // 确保work-testing版本与work-runtime一致
-    testImplementation("androidx.work:work-testing:2.9.0") {
-        because("保持与work-runtime版本一致")
-    }
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(libs.androidx.fragment.testing)
-    
-    // 基础依赖
+    // Core dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.material)
-    
-    // 新增UI相关依赖
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.cardview)
-    
-    // 网络相关
-    implementation(libs.retrofit)
-    implementation("com.squareup.retrofit2:converter-gson:${libs.versions.retrofit.get()}")
-    implementation(libs.okhttp)
-    
-    // 数据库
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.swiperefreshlayout)
     
     // WorkManager
     implementation(libs.androidx.work.runtime.ktx)
+    testImplementation("androidx.work:work-testing:${libs.versions.androidx.work}") {
+        because("保持与work-runtime版本一致")
+    }
     
-    // SwipeRefreshLayout
-    implementation(libs.androidx.swiperefreshlayout)
-    
-    // Lifecycle组件
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.kotlinx.coroutines.android)
-    
-    // Hilt扩展
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-    kapt("androidx.hilt:hilt-compiler:1.2.0")
-    
-    // 基础架构组件
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    // Compose依赖 (使用BOM管理版本)
+    // Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
@@ -241,12 +184,40 @@ dependencies {
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.animation)
     implementation(libs.androidx.compose.material.icons.extended)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.fragment)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     
-    androidTestImplementation(platform(libs.androidx.compose.bom))  // 测试也需要BOM
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    kapt("androidx.hilt:hilt-compiler:1.2.0")
+    
+    // Network
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.okhttp)
+    
+    // Database
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
+    
+    // Testing
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.arch.core.testing)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.androidx.junit)
+    
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.fragment.testing)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 }

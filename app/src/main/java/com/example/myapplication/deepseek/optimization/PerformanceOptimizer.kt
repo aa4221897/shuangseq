@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.optimization
+package com.example.lotteryprediction.deepseek.optimization
 
-import com.example.myapplication.deepseek.api.DeepSeekApi
-import com.example.myapplication.deepseek.model.AdvancedPredictionEngine
+import com.example.lotteryprediction.deepseek.api.DeepSeekApi
+import com.example.lotteryprediction.deepseek.model.AdvancedPredictionEngine
 
 /**
  * 性能优化引擎
@@ -13,8 +13,7 @@ class PerformanceOptimizer(
     private val api: DeepSeekApi by lazy { DeepSeekApi.create() }
     private var retryCount = 0
     private val maxRetries = 3
-    private val retryDelays = listOf(1000L, 3000L, 5000L) // 指数退避策略
-    private val metrics = mutableMapOf<String, Any>()
+    private val retryDelays = listOf(1000L, 3000L, 5000L) // 指数退避策�?    private val metrics = mutableMapOf<String, Any>()
     private var optimizationLevel = OptimizationLevel.BALANCED // 默认平衡模式
     private val historicalData = mutableListOf<OptimizationResult>()
     private val adaptiveThresholds = mapOf(
@@ -46,7 +45,7 @@ class PerformanceOptimizer(
             
             // 调用DeepSeek优化API
             val response = api.optimizeAlgorithm(
-                com.example.myapplication.deepseek.api.OptimizeRequest(
+                com.example.lotteryprediction.deepseek.api.OptimizeRequest(
                     algorithm = engine::class.java.name,
                     constraints = mapOf(
                         "memory" to "512MB",
@@ -73,7 +72,7 @@ class PerformanceOptimizer(
                 val delay = retryDelays[retryCount - 1]
                 logger.e(
                     "PerformanceOptimizer", 
-                    "请求失败(重试 $retryCount/$maxRetries), ${delay}ms后重试", 
+                    "请求失败(重试 $retryCount/$maxRetries), ${delay}ms后重�?, 
                     e
                 )
                 Thread.sleep(delay)
@@ -96,8 +95,7 @@ class PerformanceOptimizer(
     }
     
     private fun analyzeBottlenecks(): List<String> {
-        // 收集详细运行时指标
-        val runtime = Runtime.getRuntime()
+        // 收集详细运行时指�?        val runtime = Runtime.getRuntime()
         val memoryUsageMB = (runtime.totalMemory() - runtime.freeMemory()) / 1024 / 1024
         val cpuUsage = getProcessCpuUsage()
         
@@ -120,7 +118,7 @@ class PerformanceOptimizer(
                 "关系分析计算复杂度高",
                 "历史数据加载耗时",
                 "可用CPU核心: ${metrics["available_cores"]}",
-                "活跃线程数: ${metrics["thread_count"]}"
+                "活跃线程�? ${metrics["thread_count"]}"
             ))
         }
     }
@@ -136,15 +134,11 @@ class PerformanceOptimizer(
     }
     
     private fun getProcessCpuUsage(): Double {
-        // 实现获取进程CPU使用率
-        return 30.0 // 示例值
-    }
+        // 实现获取进程CPU使用�?        return 30.0 // 示例�?    }
     
     enum class OptimizationLevel {
-        CONSERVATIVE,  // 保守优化，最小改动
-        BALANCED,      // 平衡优化
-        AGGRESSIVE     // 激进优化
-    }
+        CONSERVATIVE,  // 保守优化，最小改�?        BALANCED,      // 平衡优化
+        AGGRESSIVE     // 激进优�?    }
     
     private fun shouldRetry(e: Exception): Boolean {
         retryCount++
@@ -175,8 +169,8 @@ class PerformanceOptimizer(
             OptimizationLevel.AGGRESSIVE -> {
                 improvements.addAll(listOf(
                     "算法重构",
-                    "内存池优化",
-                    "GPU加速",
+                    "内存池优�?,
+                    "GPU加�?,
                     "预测模型量化"
                 ))
             }

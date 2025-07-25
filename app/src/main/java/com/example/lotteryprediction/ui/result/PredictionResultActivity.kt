@@ -30,15 +30,14 @@ class PredictionResultActivity : AppCompatActivity() {
             .setMessage(R.string.base_disclaimer)
             .setPositiveButton(android.R.string.ok, null)
             .show()
-            
-        binding.tvTitle.text = getString(R.string.prediction_title)
+    }
     
     private fun displayResult(result: PredictionResult) {
         binding.tvTitle.text = getString(R.string.prediction_title)
-        binding.tvConfidence.text = "置信度: ${(result.confidence * 100).toInt()}%"
+        binding.tvConfidence.text = "置信�? ${(result.confidence * 100).toInt()}%"
         binding.tvMethod.text = "使用策略: ${result.methodUsed}"
         
-        // 显示红球和蓝球
+        // 显示红球和蓝�?
         // 实现细节省略...
         
         // 确保免责声明可见

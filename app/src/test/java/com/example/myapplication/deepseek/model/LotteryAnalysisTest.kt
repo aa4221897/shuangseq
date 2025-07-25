@@ -1,12 +1,12 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import com.example.myapplication.deepseek.model.AnalysisResult.PositionAnalysis
-import com.example.myapplication.deepseek.model.AnalysisResult.CrossPositionAnalysis
+import com.example.lotteryprediction.deepseek.model.AnalysisResult.PositionAnalysis
+import com.example.lotteryprediction.deepseek.model.AnalysisResult.CrossPositionAnalysis
 import java.util.Date
 
 @RunWith(AndroidJUnit4::class)
@@ -49,10 +49,8 @@ class LotteryAnalysisTest {
         // 验证跨位分析矩阵
         assertEquals(6, result.crossPositionResults.size)
         result.crossPositionResults.values.forEach { analysis ->
-            assertEquals(5, analysis.sizeMatrix.size) // 5期回溯
-            analysis.sizeMatrix.forEach { row ->
-                assertEquals(6, row.size) // 6个位置
-            }
+            assertEquals(5, analysis.sizeMatrix.size) // 5期回�?            analysis.sizeMatrix.forEach { row ->
+                assertEquals(6, row.size) // 6个位�?            }
         }
         assert(result.confidence in 0.0..1.0)
     }
@@ -63,9 +61,8 @@ class LotteryAnalysisTest {
         val result = model.analyze(testHistory, testHistory.lastIndex)
         
         // 验证能量分析
-        assertEquals(5, result.zoneEnergies.size) // 5个分区
-        result.zoneEnergies.values.forEach { energy ->
-            assert(energy in 0.0..6.0) // 每个分区最多6个球
+        assertEquals(5, result.zoneEnergies.size) // 5个分�?        result.zoneEnergies.values.forEach { energy ->
+            assert(energy in 0.0..6.0) // 每个分区最�?个球
         }
         assert(result.confidence in 0.0..1.0)
     }
@@ -144,8 +141,7 @@ class LotteryAnalysisTest {
         
         // 验证模型返回了正确的AnalysisResult结构
         println("Zone energies details: ${result.zoneEnergies.entries.joinToString()}") 
-        assertEquals(5, result.zoneEnergies.size) // 5个分区
-        assertTrue("Zone energies should be 6.0 or 0.0", 
+        assertEquals(5, result.zoneEnergies.size) // 5个分�?        assertTrue("Zone energies should be 6.0 or 0.0", 
             result.zoneEnergies.values.all { it == 6.0 || it == 0.0 })
         
         // 添加更详细的断言信息
@@ -158,8 +154,7 @@ class LotteryAnalysisTest {
                 0.001)
         }
         
-        // 调试输出实际值
-        println("Actual zone energies: ${result.zoneEnergies}")
+        // 调试输出实际�?        println("Actual zone energies: ${result.zoneEnergies}")
         println("Actual confidence: ${result.confidence}")
         
         // 验证分区定义是否正确

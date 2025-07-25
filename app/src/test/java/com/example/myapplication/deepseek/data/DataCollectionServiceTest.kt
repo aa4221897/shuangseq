@@ -1,8 +1,8 @@
-package com.example.myapplication.deepseek.data
+package com.example.lotteryprediction.deepseek.data
 
 import android.content.Context
-import com.example.myapplication.deepseek.model.LotteryRecord
-import com.example.myapplication.deepseek.util.NetworkUtils
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.util.NetworkUtils
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -39,7 +39,7 @@ class DataCollectionServiceTest {
     fun testValidateInvalidRecords() {
         val invalidRecords = listOf(
             LotteryRecord(redNumbers = listOf(1, 1, 3, 4, 5, 6), blueNumber = 7, date = Date()), // 重复号码
-            LotteryRecord(redNumbers = listOf(1, 3, 5, 7, 9, 11), blueNumber = 7, date = Date()), // 无连续号码
+            LotteryRecord(redNumbers = listOf(1, 3, 5, 7, 9, 11), blueNumber = 7, date = Date()), // 无连续号�?
             LotteryRecord(redNumbers = listOf(1, 2, 3, 4, 5, 6), blueNumber = 17, date = Date()) // 蓝球越界
         )
         invalidRecords.forEach { record ->

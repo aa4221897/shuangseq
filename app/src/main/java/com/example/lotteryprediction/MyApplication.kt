@@ -20,7 +20,7 @@ class LotteryPredictionApp : Application() {
     override fun onCreate() {
         super.onCreate()
         
-        // 初始化安全模块
+        // 初始化安全模�?
         SecurityInitializer.init(this)
         
         // 初始化DeepSeek SDK

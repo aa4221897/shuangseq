@@ -1,12 +1,12 @@
-package com.example.myapplication.deepseek.benchmark
+package com.example.lotteryprediction.deepseek.benchmark
 
 import androidx.benchmark.junit4.BenchmarkRule
 import androidx.benchmark.junit4.measureRepeated
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.myapplication.deepseek.model.LotteryRecord
-import com.example.myapplication.deepseek.model.PositionAnalysisModel
-import com.example.myapplication.deepseek.model.CrossPositionAnalysisModel
-import com.example.myapplication.deepseek.model.ZoneEnergyAnalysisModel
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.PositionAnalysisModel
+import com.example.lotteryprediction.deepseek.model.CrossPositionAnalysisModel
+import com.example.lotteryprediction.deepseek.model.ZoneEnergyAnalysisModel
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

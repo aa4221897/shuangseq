@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.knowledge
+package com.example.lotteryprediction.deepseek.knowledge
 
-import com.example.myapplication.deepseek.data.ResourceMapper
+import com.example.lotteryprediction.deepseek.data.ResourceMapper
 
 class DefaultResourceFactory(
     private val mapper: ResourceMapper

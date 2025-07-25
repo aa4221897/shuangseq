@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.task
+package com.example.lotteryprediction.deepseek.task
 
 import android.content.Context
-import com.example.myapplication.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.util.LogUtils
 
 object ReportComparator {
     private const val TAG = "ReportComparator"

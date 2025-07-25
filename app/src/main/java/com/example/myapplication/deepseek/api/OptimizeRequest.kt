@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.api
+package com.example.lotteryprediction.deepseek.api
 
 data class OptimizeRequest(
     val algorithm: String,

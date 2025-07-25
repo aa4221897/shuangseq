@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
 /**
  * 双色球预测集成类
@@ -11,9 +11,8 @@ class LotteryPredictor(
 ) {
     /**
      * 执行综合预测
-     * @param history 历史开奖数据(必须按时间顺序排列)
-     * @param currentIndex 当前期次在历史数据中的索引
-     * @return 预测结果
+     * @param history 历史开奖数�?必须按时间顺序排�?
+     * @param currentIndex 当前期次在历史数据中的索�?     * @return 预测结果
      */
     fun predict(history: List<LotteryRecord>, currentIndex: Int): PredictionResult {
         if (history.isEmpty() || currentIndex < 0 || currentIndex >= history.size) {
@@ -31,7 +30,7 @@ class LotteryPredictor(
         val crossResult = crossModel.analyze(history, currentIndex)
         val energyResult = energyModel.analyze(history, currentIndex)
 
-        // 综合置信度(加权平均)
+        // 综合置信�?加权平均)
         val totalConfidence = listOf(
             positionResult.confidence * 0.4,
             crossResult.confidence * 0.3,
@@ -67,12 +66,10 @@ class LotteryPredictor(
         }
         
         // 实现预测逻辑(示例)
-        return emptyList() // 实际实现需要根据分析结果生成预测号码
-    }
+        return emptyList() // 实际实现需要根据分析结果生成预测号�?    }
 
     /**
-     * 预测结果数据类
-     */
+     * 预测结果数据�?     */
     data class PredictionResult(
         val positionAnalysis: Map<Int, AnalysisResult.PositionAnalysis>,
         val crossPositionAnalysis: Map<Int, AnalysisResult.CrossPositionAnalysis>,

@@ -1,16 +1,14 @@
-package com.example.myapplication.deepseek.task
+package com.example.lotteryprediction.deepseek.task
 
 import android.app.job.JobParameters
 import android.app.job.JobService
-import com.example.myapplication.deepseek.util.PerformanceMonitor
-import com.example.myapplication.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.util.PerformanceMonitor
+import com.example.lotteryprediction.deepseek.util.LogUtils
 
 /**
  * 性能基准测试定时任务
  * 
- * 每周日凌晨3点自动运行基准测试
- * 生成性能报告并通知开发团队
- */
+ * 每周日凌�?点自动运行基准测�? * 生成性能报告并通知开发团�? */
 class BenchmarkScheduler : JobService() {
     private val TAG = "BenchmarkScheduler"
 
@@ -19,8 +17,7 @@ class BenchmarkScheduler : JobService() {
         
         Thread {
             try {
-                // 运行所有基准测试
-                val report = PerformanceMonitor.generateReport()
+                // 运行所有基准测�?                val report = PerformanceMonitor.generateReport()
                 
                 // 保存报告
                 ReportStorage.save(report)

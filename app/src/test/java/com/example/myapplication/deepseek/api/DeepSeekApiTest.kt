@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.api
+package com.example.lotteryprediction.deepseek.api
 
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse

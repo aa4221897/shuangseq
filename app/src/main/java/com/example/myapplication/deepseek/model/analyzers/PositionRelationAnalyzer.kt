@@ -1,20 +1,17 @@
-package com.example.myapplication.deepseek.model.analyzers
+package com.example.lotteryprediction.deepseek.model.analyzers
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.IndicatorAnalyzer
-import com.example.myapplication.deepseek.model.relations.NumberRelation
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.IndicatorAnalyzer
+import com.example.lotteryprediction.deepseek.model.relations.NumberRelation
 
 /**
- * 位置关联分析器
- * 分析各位置号码间的相生相克关系
- */
+ * 位置关联分析�? * 分析各位置号码间的相生相克关�? */
 class PositionRelationAnalyzer : IndicatorAnalyzer {
     
     override fun analyze(records: List<LotteryRecord>): Map<String, Map<Int, Double>> {
         val positionRelations = mutableMapOf<String, MutableMap<Int, Double>>()
         
-        // 初始化位置关系矩阵
-        listOf("pos1", "pos2", "pos3", "pos4", "pos5", "pos6").forEach { pos ->
+        // 初始化位置关系矩�?        listOf("pos1", "pos2", "pos3", "pos4", "pos5", "pos6").forEach { pos ->
             positionRelations[pos] = mutableMapOf<Int, Double>().withDefault { 0.0 }
         }
 
@@ -38,9 +35,9 @@ class PositionRelationAnalyzer : IndicatorAnalyzer {
             }
         }
 
-        // 标准化关系强度 (转换为概率)
+        // 标准化关系强�?(转换为概�?
         positionRelations.forEach { (pos, relations) ->
-            val total = relations.values.sum().absoluteValue
+            val total = relations.values.sum().absoluteValue.toDouble()
             if (total > 0) {
                 relations.replaceAll { _, value -> value / total }
             }

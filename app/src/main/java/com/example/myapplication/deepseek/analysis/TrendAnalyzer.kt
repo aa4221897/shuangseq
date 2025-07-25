@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.analysis
+package com.example.lotteryprediction.deepseek.analysis
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.data.TrendData
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.data.TrendData
 import kotlin.math.roundToInt
 import kotlin.collections.List
 import kotlin.collections.Map
@@ -26,8 +26,7 @@ class TrendAnalyzer {
         val redStats = analyzeNumbers(records.flatMap { it.redNumbers })
         val blueStats = analyzeNumbers(records.map { it.blueNumber })
         
-        // 2. 冷热号分析
-        val (hotRed, coldRed) = classifyHotCold(redStats)
+        // 2. 冷热号分�?        val (hotRed, coldRed) = classifyHotCold(redStats)
         val (hotBlue, coldBlue) = classifyHotCold(blueStats)
         
         // 3. 区间分布分析
@@ -61,8 +60,7 @@ class TrendAnalyzer {
      */
     private fun analyzeZones(records: List<LotteryRecord>): Map<String, Float> {
         val zones = listOf(1..6, 7..12, 13..18, 19..24, 25..30, 31..33)
-        // 总出现次数
-        val total = records.size * 6f
+        // 总出现次�?        val total = records.size * 6f
         
         return zones.associate { zone ->
             // 计算每个区间的百分比
@@ -80,5 +78,4 @@ data class TrendAnalysis(
     val coldRedNumbers: List<Int>,    // 冷号红球
     val hotBlueNumbers: List<Int>,    // 热号蓝球
     val coldBlueNumbers: List<Int>,   // 冷号蓝球
-    val zoneDistribution: Map<String, Float> // 区间分布百分比
-)
+    val zoneDistribution: Map<String, Float> // 区间分布百分�?)

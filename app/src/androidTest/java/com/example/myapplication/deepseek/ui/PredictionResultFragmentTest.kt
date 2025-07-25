@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.ui
+package com.example.lotteryprediction.deepseek.ui
 
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
@@ -7,7 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.myapplication.deepseek.model.CoverageResult
+import com.example.lotteryprediction.deepseek.model.CoverageResult
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -28,8 +28,7 @@ class PredictionResultFragmentTest {
     fun testSuccessState() {
         val scenario = launchFragmentInContainer<PredictionResultFragment>()
         
-        // TODO: 模拟ViewModel返回成功状态
-        onView(withId(R.id.contentGroup))
+        // TODO: 模拟ViewModel返回成功状�?        onView(withId(R.id.contentGroup))
             .check(matches(isDisplayed()))
         onView(withId(R.id.killerNumbers))
             .check(matches(isDisplayed()))
@@ -39,8 +38,7 @@ class PredictionResultFragmentTest {
     fun testErrorState() {
         val scenario = launchFragmentInContainer<PredictionResultFragment>()
         
-        // TODO: 模拟ViewModel返回错误状态
-        onView(withId(R.id.errorText))
+        // TODO: 模拟ViewModel返回错误状�?        onView(withId(R.id.errorText))
             .check(matches(isDisplayed()))
     }
 }

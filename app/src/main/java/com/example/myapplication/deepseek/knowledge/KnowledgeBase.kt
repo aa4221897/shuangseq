@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.knowledge
+package com.example.lotteryprediction.deepseek.knowledge
 
-import com.example.myapplication.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
 
 /**
  * 双色球知识库系统
@@ -24,12 +24,10 @@ object KnowledgeBase {
         data["algorithms"] = """
             1. 传统统计分析
             2. 相生相克关系分析
-            3. 生克动力学模型
-            4. 邻码偏差预测
+            3. 生克动力学模�?            4. 邻码偏差预测
         """
         
-        // 系统元数据
-        data["metadata"] = mapOf(
+        // 系统元数�?        data["metadata"] = mapOf(
             "created" to System.currentTimeMillis(),
             "last_updated" to System.currentTimeMillis()
         )

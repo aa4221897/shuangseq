@@ -1,11 +1,17 @@
-package com.example.myapplication.deepseek.api
+package com.example.lotteryprediction.deepseek.api
 
+import android.content.Context
+import okhttp3.Cache
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.POST
+import java.io.File
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import javax.net.ssl.SSLContext
@@ -19,7 +25,7 @@ interface DeepSeekApi {
     companion object {
         private const val BASE_URL = "https://api.deepseek.com/"
 
-        fun create(): DeepSeekApi {
+        fun create(context: Context): DeepSeekApi {
             // 创建信任所有证书的TrustManager
             val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
                 override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
@@ -32,10 +38,9 @@ interface DeepSeekApi {
             sslContext.init(null, trustAllCerts, SecureRandom())
 
             // 创建自定义日志拦截器
-            val logger = com.example.myapplication.deepseek.util.AndroidLogger()
+            val logger = com.example.lotteryprediction.deepseek.util.AndroidLogger()
             
-            // 创建重试拦截器
-            val retryInterceptor = { chain: okhttp3.Interceptor.Chain ->
+            // 创建重试拦截�?            val retryInterceptor = { chain: okhttp3.Interceptor.Chain ->
                 var currentRetry = 0
                 val maxRetries = 3
                 var response: okhttp3.Response? = null
@@ -56,16 +61,22 @@ interface DeepSeekApi {
                     currentRetry++
                 }
                 
-                response ?: throw lastException ?: IllegalStateException("Unknown error")
+                response ?: throw (lastException ?: IllegalStateException("Unknown error after $maxRetries retries"))
             }
+            
+            // 创建缓存目录和策�?(10MB缓存)
+            val cacheDir = File(context.cacheDir, "http_cache")
+            val cacheSize = 10L * 1024 * 1024 // 10MB
+            val cache = Cache(cacheDir, cacheSize)
             
             // 创建OkHttpClient
             val client = OkHttpClient.Builder()
+                .cache(cache)
                 .sslSocketFactory(sslContext.socketFactory, trustAllCerts[0] as X509TrustManager)
                 .hostnameVerifier { hostname, _ -> 
                     val isValid = try {
                         val url = java.net.URL("https://$hostname")
-                        com.example.myapplication.deepseek.util.NetworkUtils.verifySSLCertificate(url.toString())
+                        com.example.lotteryprediction.deepseek.util.NetworkUtils.verifySSLCertificate(url.toString())
                     } catch (e: Exception) {
                         logger.logSslHandshake(
                             "https://$hostname", 
@@ -80,6 +91,22 @@ interface DeepSeekApi {
                         if (isValid) null else "SSL verification failed"
                     )
                     isValid
+                }
+                .addInterceptor { chain ->
+                    val request = chain.request()
+                    // 只在有网络时使用缓存
+                    if (!com.example.lotteryprediction.deepseek.util.NetworkUtils.isNetworkConnected(context)) {
+                        request.newBuilder()
+                            .header("Cache-Control", "public, only-if-cached, max-stale=${60 * 60 * 24 * 7}") // 1周离线缓�?                            .build()
+                    } else {
+                        request
+                    }
+                }
+                .addNetworkInterceptor { chain ->
+                    val response = chain.proceed(chain.request())
+                    response.newBuilder()
+                        .header("Cache-Control", "public, max-age=60") // 在线时缓�?分钟
+                        .build()
                 }
                 .addInterceptor(retryInterceptor)
                 .addInterceptor { chain ->
@@ -139,6 +166,7 @@ interface DeepSeekApi {
                 .baseUrl(BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory.create())
                 .build()
                 .create(DeepSeekApi::class.java)
         }

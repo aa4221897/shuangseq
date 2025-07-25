@@ -1,12 +1,11 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
 
 import kotlin.math.abs
 
 /**
  * 同位分析模型
- * 分析同一位置红球的历史关系
- */
+ * 分析同一位置红球的历史关�? */
 class PositionAnalysisModel : LotteryAnalysisModel() {
     override fun analyze(history: List<LotteryRecord>, currentIndex: Int): AnalysisResult {
         if (history.isEmpty() || currentIndex < 0 || currentIndex >= history.size) {
@@ -30,21 +29,19 @@ class PositionAnalysisModel : LotteryAnalysisModel() {
         
         val positionResults = mutableMapOf<Int, AnalysisResult.PositionAnalysis>()
         
-        // 对每个位置(1-6)进行分析
+        // 对每个位�?1-6)进行分析
         for (position in 0..5) {
             val sizeRelations = mutableListOf<Double>()
             val parityRelations = mutableListOf<Double>()
             
-            // 优化回溯计算(最多5期)
+            // 优化回溯计算(最�?�?
             val lookbackRange = 1..minOf(5, currentIndex.coerceAtLeast(0))
             for (lookback in lookbackRange) {
                 val currentNum = history[currentIndex].redNumbers[position]
                 val prevNum = history[currentIndex - lookback].redNumbers[position]
                 
-                // 处理相同数字的特殊情况
-                if (currentNum == prevNum) {
-                    // 相同数字时给予更强的正相关评分
-                    sizeRelations.add(0.8)
+                // 处理相同数字的特殊情�?                if (currentNum == prevNum) {
+                    // 相同数字时给予更强的正相关评�?                    sizeRelations.add(0.8)
                     parityRelations.add(1.0)
                 } else {
                     sizeRelations.add(
@@ -76,8 +73,7 @@ class PositionAnalysisModel : LotteryAnalysisModel() {
     
     private fun calculateConfidence(results: Collection<AnalysisResult.PositionAnalysis>): Double {
         if (results.isEmpty()) return 0.0
-        // 置信度基于关系强度绝对值平均
-        val avgStrength = results.flatMap { listOf(it.sizeRelation, it.parityRelation) }
+        // 置信度基于关系强度绝对值平�?        val avgStrength = results.flatMap { listOf(it.sizeRelation, it.parityRelation) }
             .map { kotlin.math.abs(it) }
             .average()
         return avgStrength.coerceIn(0.0, 1.0)

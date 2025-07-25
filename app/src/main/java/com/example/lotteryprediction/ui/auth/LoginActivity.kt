@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.requestSMSCode(phone)
             } else {
                 Toast.makeText(this, R.string.auth_invalid_phone, Toast.LENGTH_SHORT).show()
-                Toast.makeText(this, R.string.auth_invalid_code, Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.btnVerify.setOnClickListener {
@@ -56,11 +56,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showLoading() {
-        // 显示加载状态
+        // 显示加载状�?
     }
 
     private fun showCodeSent() {
-        // 显示验证码已发送
+        // 显示验证码已发�?
     }
 
     private fun navigateToMain() {

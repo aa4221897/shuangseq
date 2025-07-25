@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek
+package com.example.lotteryprediction.deepseek
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.example.myapplication.R
-import com.example.myapplication.databinding.DialogFeedbackBinding
+import com.example.lotteryprediction.R
+import com.example.lotteryprediction.databinding.DialogFeedbackBinding
 
 class FeedbackDialog : DialogFragment() {
     private lateinit var binding: DialogFeedbackBinding
@@ -29,12 +29,11 @@ class FeedbackDialog : DialogFragment() {
             val rating = binding.ratingBar.rating
             
             if (feedback.isBlank()) {
-                Toast.makeText(context, "请填写反馈内容", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "请填写反馈内�?, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             
-            // 保存反馈到本地或发送到服务器
-            saveFeedback(feedback, rating)
+            // 保存反馈到本地或发送到服务�?            saveFeedback(feedback, rating)
             dismiss()
         }
     }

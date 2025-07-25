@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
+    android:background="@color/background_dark"
     android:orientation="vertical"
     android:padding="24dp"
     tools:context=".ui.auth.LoginActivity">
@@ -15,7 +15,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="48dp"
         android:text="@string/app_name"
-        android:textColor="#FFD700"
+        android:textColor="@color/gold"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -28,14 +28,14 @@
         app:boxStrokeColor="#FFD700">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/phone_number"
             android:inputType="phone"
             android:maxLength="11"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B3FFFFFF" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint_text"
+            app:boxStrokeColor="@color/gold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -43,9 +43,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="#FFD700"
+        android:backgroundTint="@color/gold"
         android:text="@string/request_code"
-        android:textColor="#121212" />
+        android:textColor="@color/text_dark" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -62,15 +62,15 @@
             android:hint="@string/verification_code"
             android:inputType="number"
             android:maxLength="6"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B3FFFFFF" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint_text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnVerify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FFD700"
+        android:backgroundTint="@color/gold"
         android:text="@string/verify"
-        android:textColor="#121212" />
+        android:textColor="@color/text_dark" />
 </LinearLayout>

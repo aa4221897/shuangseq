@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.task
+package com.example.lotteryprediction.deepseek.task
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,9 +10,9 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 // 移除BuildConfig导入
-import com.example.myapplication.R
-import com.example.myapplication.databinding.ActivityFeatureReportBinding
-import com.example.myapplication.deepseek.util.LogUtils
+import com.example.lotteryprediction.R
+import com.example.lotteryprediction.databinding.ActivityFeatureReportBinding
+import com.example.lotteryprediction.deepseek.util.LogUtils
 import java.io.File
 
 class FeatureReportActivity : AppCompatActivity(), CompareReportsDialog.OnCompareListener {

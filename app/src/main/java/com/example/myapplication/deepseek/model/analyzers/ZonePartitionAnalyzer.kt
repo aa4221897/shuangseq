@@ -1,13 +1,13 @@
-package com.example.myapplication.deepseek.model.analyzers
+package com.example.lotteryprediction.deepseek.model.analyzers
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.IndicatorAnalyzer
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.IndicatorAnalyzer
 
 /**
  * 五分区优化分析器
- * 将33个红球分为5个区间：
- * 1区(1-7) 2区(8-14) 3区(15-21)
- * 4区(22-28) 5区(29-33)
+ * �?3个红球分�?个区间：
+ * 1�?1-7) 2�?8-14) 3�?15-21)
+ * 4�?22-28) 5�?29-33)
  */
 class ZonePartitionAnalyzer : IndicatorAnalyzer {
     override fun analyze(records: List<LotteryRecord>): Map<String, Any> {
@@ -16,8 +16,7 @@ class ZonePartitionAnalyzer : IndicatorAnalyzer {
             "zone3" to 0, "zone4" to 0, "zone5" to 0
         )
         
-        // 统计各区间号码出现频率
-        records.forEach { record ->
+        // 统计各区间号码出现频�?        records.forEach { record ->
             record.redNumbers.forEach { num ->
                 when (num) {
                     in 1..7 -> zoneStats["zone1"] = zoneStats.getOrDefault("zone1", 0) + 1

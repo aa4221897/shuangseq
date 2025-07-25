@@ -1,30 +1,26 @@
-package com.example.myapplication.deepseek.ml
+package com.example.lotteryprediction.deepseek.ml
 
-import com.example.myapplication.deepseek.model.LotteryRecord
-import com.example.myapplication.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.util.LogUtils
 import kotlin.math.pow
 
 /**
  * 机器学习特征工程工具
  * 
- * 功能：
- * 1. 特征提取
+ * 功能�? * 1. 特征提取
  * 2. 特征转换
  * 3. 特征选择
  * 
- * 使用示例：
- * ```
+ * 使用示例�? * ```
  * val features = FeatureEngineer.extractFeatures(history)
  * ```
  */
 class FeatureEngineer {
     private val TAG = "FeatureEngineer"
     private val featureImportance = mutableMapOf<String, Double>()
-    private var featureSelectionThreshold = 0.5 // 默认特征选择阈值
-
+    private var featureSelectionThreshold = 0.5 // 默认特征选择阈�?
     /**
-     * 从历史数据提取特征
-     */
+     * 从历史数据提取特�?     */
     fun extractFeatures(history: List<LotteryRecord>): List<DoubleArray> {
         return history.mapIndexed { index, record ->
             val features = mutableListOf<Double>().apply {
@@ -32,17 +28,13 @@ class FeatureEngineer {
                 addAll(record.redNumbers.map { it.toDouble() })
                 
                 // 统计特征
-                add(record.redNumbers.average()) // 平均值
-                add(record.redNumbers.sum().toDouble()) // 总和
-                add(record.redNumbers.max().toDouble()) // 最大值
-                add(record.redNumbers.min().toDouble()) // 最小值
-                add(record.redNumbers.standardDeviation()) // 标准差
-                
+                add(record.redNumbers.average()) // 平均�?                add(record.redNumbers.sum().toDouble()) // 总和
+                add(record.redNumbers.max().toDouble()) // 最大�?                add(record.redNumbers.min().toDouble()) // 最小�?                add(record.redNumbers.standardDeviation()) // 标准�?                
                 // 组合特征
                 add(record.redNumbers.sumOf { it % 2 }.toDouble()) // 奇偶分布
                 add(record.redNumbers.sumOf { if (it <= 16) 1 else 0 }.toDouble()) // 区间分布
                 
-                // 时序特征(需要历史数据)
+                // 时序特征(需要历史数�?
                 if (index > 0) {
                     val prev = history[index - 1]
                     add(differenceRatio(record.redNumbers, prev.redNumbers))
@@ -74,8 +66,7 @@ class FeatureEngineer {
     }
 
     /**
-     * 特征标准化
-     */
+     * 特征标准�?     */
     fun normalizeFeatures(features: List<DoubleArray>): List<DoubleArray> {
         if (features.isEmpty()) return emptyList()
         
@@ -83,8 +74,7 @@ class FeatureEngineer {
         val stds = DoubleArray(features[0].size)
         stds.fill(0.0)
         
-        // 计算均值和标准差
-        features.forEach { vec ->
+        // 计算均值和标准�?        features.forEach { vec ->
             vec.forEachIndexed { i, v -> means[i] = means[i] + v }
         }
         means.indices.forEach { i -> means[i] = means[i] / features.size }
@@ -94,8 +84,7 @@ class FeatureEngineer {
         }
         stds.indices.forEach { i -> stds[i] = kotlin.math.sqrt(stds[i]/features.size) }
         
-        // 标准化
-        return features.map { vec ->
+        // 标准�?        return features.map { vec ->
             vec.mapIndexed { i, v -> 
                 if (stds[i] != 0.0) (v - means[i])/stds[i] else 0.0
             }.toDoubleArray()
@@ -132,10 +121,9 @@ class FeatureEngineer {
     }
     
     /**
-     * 计算特征重要性
-     */
+     * 计算特征重要�?     */
     fun calculateFeatureImportance(features: List<DoubleArray>, labels: List<Int>) {
-        // 简单实现 - 实际应使用专业特征选择算法
+        // 简单实�?- 实际应使用专业特征选择算法
         features.firstOrNull()?.indices?.forEach { index ->
             val importance = features.map { it[index] }.zip(labels).sumOf { (f, l) ->
                 (f - l).pow(2)

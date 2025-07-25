@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
 import android.util.Log
-import com.example.myapplication.deepseek.util.Logger
+import com.example.lotteryprediction.deepseek.util.Logger
 import java.util.ArrayList
 import java.util.Collections
 import java.util.Date
@@ -37,8 +37,7 @@ class LotteryPredictionManager(private val historyData: List<LotteryRecord>) {
         require(historyData.size >= 5) { "At least 5 history records are required" }
         val currentIndex = historyData.lastIndex
         return try {
-            // 执行杀号预测
-            val killers = killerPredictor.predictKillerNumbers(currentIndex)
+            // 执行杀号预�?            val killers = killerPredictor.predictKillerNumbers(currentIndex)
             
             // 获取优化建议
             val improvements = killerOptimizer.getActiveImprovements(currentIndex)
@@ -75,8 +74,7 @@ class LotteryPredictionManager(private val historyData: List<LotteryRecord>) {
     }
 
     private fun predictDanmaNumbers(currentIndex: Int): List<Int> {
-        // 简化实现，实际应使用胆码预测算法
-        val windowSize = max(5, min(20, currentIndex).coerceAtLeast(1))
+        // 简化实现，实际应使用胆码预测算�?        val windowSize = max(5, min(20, currentIndex).coerceAtLeast(1))
         val startIndex = max(0, currentIndex - windowSize)
         return historyData
             .subList(startIndex, currentIndex)
@@ -90,8 +88,7 @@ class LotteryPredictionManager(private val historyData: List<LotteryRecord>) {
     }
 
     private fun predictGroupCombinations(): List<List<Int>> {
-        // 简化实现，实际应使用组合预测算法
-        return listOf(
+        // 简化实现，实际应使用组合预测算�?        return listOf(
             (1..6).map { it * 5 - 2 }.take(6),
             (7..12).map { it * 2 + 1 }.take(6),
             (13..18).map { it * 2 }.take(6)

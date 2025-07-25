@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupObservers() {
         viewModel.recentResults.observe(this) { results ->
-            // 更新最近开奖结果展示
+            // 更新最近开奖结果展�?
         }
         
         viewModel.predictionResult.observe(this) { result ->

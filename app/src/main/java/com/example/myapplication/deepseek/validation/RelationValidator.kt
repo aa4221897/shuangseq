@@ -1,18 +1,17 @@
-package com.example.myapplication.deepseek.validation
+package com.example.lotteryprediction.deepseek.validation
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.DynamicsAnalysis
-import com.example.myapplication.deepseek.model.DynamicsEngine
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.DynamicsAnalysis
+import com.example.lotteryprediction.deepseek.model.DynamicsEngine
 import kotlin.math.roundToInt
 
 /**
  * 关系验证系统
- * 验证生克关系的预测效果
- */
+ * 验证生克关系的预测效�? */
 class RelationValidator(private val engine: DynamicsEngine) {
     
     fun validate(records: List<LotteryRecord>): ValidationReport {
-        require(records.size > 100) { "至少需要100期数据验证" }
+        require(records.size > 100) { "至少需�?00期数据验�? }
         
         val testSize = (records.size * 0.2).roundToInt()
         val trainingData = records.dropLast(testSize)
@@ -34,8 +33,7 @@ class RelationValidator(private val engine: DynamicsEngine) {
                 engine.analyzeRelations(records.subList(0, i))
             )
             
-            // 验证主生号码是否在下期出现
-            val promoteHits = predicted["promote"]?.count { next.redNumbers.contains(it) } ?: 0
+            // 验证主生号码是否在下期出�?            val promoteHits = predicted["promote"]?.count { next.redNumbers.contains(it) } ?: 0
             // 验证主克号码是否抑制下期号码
             val inhibitHits = predicted["inhibit"]?.count { !next.redNumbers.contains(it) } ?: 0
             
@@ -63,8 +61,5 @@ class RelationValidator(private val engine: DynamicsEngine) {
 
 data class ValidationReport(
     val totalTests: Int,
-    val promoteHitRate: Double, // 主生号码命中率
-    val inhibitEffectiveness: Double, // 主克抑制效果
-    val adjacentHitRate: Double, // 邻码命中率
-    val caseStudies: List<Pair<List<Int>, List<Int>>> // 预测与实际对比案例
-)
+    val promoteHitRate: Double, // 主生号码命中�?    val inhibitEffectiveness: Double, // 主克抑制效果
+    val adjacentHitRate: Double, // 邻码命中�?    val caseStudies: List<Pair<List<Int>, List<Int>>> // 预测与实际对比案�?)

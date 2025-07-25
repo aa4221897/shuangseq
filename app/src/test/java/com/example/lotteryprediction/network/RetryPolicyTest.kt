@@ -50,7 +50,7 @@ class RetryPolicyTest {
 
     @Test(expected = Exception::class)
     fun testMaxRetryReached() = runBlocking {
-        // 模拟3次失败
+        // 模拟3次失�?
         repeat(3) {
             mockWebServer.enqueue(MockResponse().setResponseCode(500))
         }

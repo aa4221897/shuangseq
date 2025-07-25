@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek
+package com.example.lotteryprediction.deepseek
 
 import android.content.Context
-import com.example.myapplication.deepseek.api.DeepSeekApi
+import com.example.lotteryprediction.deepseek.api.DeepSeekApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -15,9 +15,8 @@ class DeepSeekClient(private val config: DeepSeekConfig) {
     private var retryCount = 0
     private val maxRetries = 3
     private val api: DeepSeekApi by lazy {
-        DeepSeekApi.create().also { api ->
-            // 确保API端点与配置一致
-            (api as? retrofit2.Retrofit)?.baseUrl()?.let { baseUrl ->
+        DeepSeekApi.create(config.context).also { api ->
+            // 确保API端点与配置一�?            (api as? retrofit2.Retrofit)?.baseUrl()?.let { baseUrl ->
                 if (baseUrl.toString() != config.endpoint) {
                     throw IllegalStateException("API endpoint mismatch: ${baseUrl} vs ${config.endpoint}")
                 }
@@ -101,34 +100,55 @@ class DeepSeekClient(private val config: DeepSeekConfig) {
     private fun <T> handleApiError(e: Exception): T {
         when (e) {
             is HttpException -> {
+                val errorBody = try {
+                    e.response()?.errorBody()?.string() ?: "无错误详�?
+                } catch (ex: Exception) {
+                    "无法解析错误详情"
+                }
+                
                 when (e.code()) {
-                    401 -> throw DeepSeekException("认证失败，请检查API密钥")
-                    403 -> throw DeepSeekException("无权访问该资源")
-                    404 -> throw DeepSeekException("请求的资源不存在")
+                    400 -> throw DeepSeekException("请求参数错误: $errorBody")
+                    401 -> throw DeepSeekException("认证失败，请检查API密钥。服务端返回: $errorBody")
+                    403 -> throw DeepSeekException("无权访问该资源。服务端返回: $errorBody")
+                    404 -> throw DeepSeekException("请求的资源不存在: ${e.response()?.raw()?.request?.url}")
+                    408 -> throw RetryableException("请求超时，将自动重试")
                     429 -> {
                         if (retryCount++ < maxRetries) {
-                            Thread.sleep(1000L * retryCount)
-                            throw RetryableException("请求过于频繁，正在重试($retryCount/$maxRetries)")
+                            val retryAfter = e.response()?.headers()?.get("Retry-After")?.toLongOrNull() ?: 1000L * retryCount
+                            Thread.sleep(retryAfter)
+                            throw RetryableException("请求过于频繁，将�?{retryAfter/1000}秒后重试($retryCount/$maxRetries)")
                         }
-                        throw DeepSeekException("请求过于频繁，请稍后再试")
+                        throw DeepSeekException("请求过于频繁，请稍后再试。服务端返回: $errorBody")
                     }
-                    500 -> throw DeepSeekException("服务器内部错误")
-                    else -> throw DeepSeekException("HTTP错误: ${e.code()}")
+                    500, 502, 503, 504 -> {
+                        if (retryCount++ < maxRetries) {
+                            Thread.sleep(1000L * retryCount)
+                            throw RetryableException("服务器错�?${e.code()})，正在重�?$retryCount/$maxRetries)")
+                        }
+                        throw DeepSeekException("服务器错�?${e.code()}): $errorBody")
+                    }
+                    else -> throw DeepSeekException("HTTP错误(${e.code()}): $errorBody")
                 }
             }
-            is SocketTimeoutException -> throw DeepSeekException("请求超时，请检查网络连接")
+            is SocketTimeoutException -> {
+                if (retryCount++ < maxRetries) {
+                    Thread.sleep(1000L * retryCount)
+                    throw RetryableException("连接超时，正在重�?$retryCount/$maxRetries)")
+                }
+                throw DeepSeekException("请求超时，请检查网络连接。错误详�? ${e.message}")
+            }
             is SSLHandshakeException -> {
                 if (retryCount++ < maxRetries) {
                     Thread.sleep(1000L * retryCount)
-                    throw RetryableException("SSL握手失败，正在重试($retryCount/$maxRetries)")
+                    throw RetryableException("SSL握手失败，正在重�?$retryCount/$maxRetries)")
                 }
-                throw DeepSeekException("SSL握手失败，请检查网络设置或联系管理员")
+                throw DeepSeekException("SSL握手失败，请检查网络设置或联系管理员。错误详�? ${e.message}")
             }
             is IOException -> throw DeepSeekException("网络错误: ${e.message}")
-            else -> throw DeepSeekException("未知错误: ${e.message}")
+            is IllegalStateException -> throw DeepSeekException("配置错误: ${e.message}")
+            else -> throw DeepSeekException("未知错误: ${e.javaClass.simpleName} - ${e.message}")
         }
     }
 }
 
-class DeepSeekException(message: String) : Exception(message)
 class RetryableException(message: String) : Exception(message)

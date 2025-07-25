@@ -21,6 +21,7 @@ abstract class LotteryDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): LotteryDatabase {
             return INSTANCE ?: synchronized(this) {
+                // 使用applicationContext是必要的，因为Room需要应用级别的Context
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     LotteryDatabase::class.java,

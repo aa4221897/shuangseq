@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.network.exceptions
+package com.example.lotteryprediction.deepseek.network.exceptions
 
 import java.io.IOException
 import retrofit2.HttpException

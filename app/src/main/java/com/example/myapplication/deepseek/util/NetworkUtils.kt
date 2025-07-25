@@ -1,5 +1,8 @@
-package com.example.myapplication.deepseek.util
+package com.example.lotteryprediction.deepseek.util
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
@@ -14,5 +17,12 @@ object NetworkUtils {
         } catch (e: Exception) {
             false
         }
+    }
+
+    fun isNetworkConnected(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
 }

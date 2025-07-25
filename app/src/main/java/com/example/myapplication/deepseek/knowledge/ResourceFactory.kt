@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.knowledge
+package com.example.lotteryprediction.deepseek.knowledge
 
 interface ResourceFactory {
     fun loadDrawables(): Map<String, Int>

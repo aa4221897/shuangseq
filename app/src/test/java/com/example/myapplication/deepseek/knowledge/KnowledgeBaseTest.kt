@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.knowledge
+package com.example.lotteryprediction.deepseek.knowledge
 
-import com.example.myapplication.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
 import org.junit.Test
 import java.util.Date
 import kotlin.test.assertEquals

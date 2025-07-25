@@ -1,16 +1,15 @@
-package com.example.myapplication.deepseek.model.analyzers
+package com.example.lotteryprediction.deepseek.model.analyzers
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.IndicatorAnalyzer
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.IndicatorAnalyzer
 
 /**
- * 定位分析器：分析每个位置号码的出现规律
- */
+ * 定位分析器：分析每个位置号码的出现规�? */
 class PositionalAnalyzer : IndicatorAnalyzer {
     override fun analyze(records: List<LotteryRecord>): Map<Int, Map<Int, Int>> {
         val positionStats = mutableMapOf<Int, MutableMap<Int, Int>>()
         
-        // 初始化位置字典 (双色球6个红球位置)
+        // 初始化位置字�?(双色�?个红球位�?
         (1..6).forEach { position ->
             positionStats[position] = mutableMapOf<Int, Int>().withDefault { 0 }
         }

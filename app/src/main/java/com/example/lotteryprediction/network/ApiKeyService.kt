@@ -13,5 +13,5 @@ interface ApiKeyService {
 
 data class ApiKeyResponse(
     val apiKey: String,
-    val expiresIn: Long // 过期时间(秒)
+    val expiresIn: Long // 过期时间(�?
 )

@@ -1,8 +1,8 @@
-package com.example.myapplication.deepseek.service
+package com.example.lotteryprediction.deepseek.service
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.AdvancedPredictionEngine
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.AdvancedPredictionEngine
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -74,7 +74,7 @@ class DeepSeekServiceE2ETest {
         
         // 执行测试
         val result = service.handleUserQuery(
-            query = "预测下一期号码",
+            query = "预测下一期号�?,
             context = records
         )
         
@@ -92,7 +92,7 @@ class DeepSeekServiceE2ETest {
         )
         
         service.handleUserQuery(
-            query = "预测下一期号码",
+            query = "预测下一期号�?,
             context = records
         )
     }

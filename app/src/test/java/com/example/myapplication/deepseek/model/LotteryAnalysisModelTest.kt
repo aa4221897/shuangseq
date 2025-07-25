@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
 import org.junit.Test
 import org.junit.Assert.*

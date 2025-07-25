@@ -1,8 +1,8 @@
-package com.example.myapplication.deepseek
+package com.example.lotteryprediction.deepseek
 
 import android.content.Context
-import com.example.myapplication.deepseek.model.LotteryPredictor
-import com.example.myapplication.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.LotteryPredictor
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -34,11 +34,11 @@ class DeepSeekService(private val config: DeepSeekConfig) {
 
     /**
      * 预测下一期双色球号码
-     * @param history 历史开奖记录(按时间顺序排列)
+     * @param history 历史开奖记�?按时间顺序排�?
      * @return 预测结果
      */
     fun predictLottery(history: List<LotteryRecord>): LotteryPredictor.PredictionResult {
-        require(history.size >= 6) { "至少需要6期历史数据" }
+        require(history.size >= 6) { "至少需�?期历史数�? }
         return predictor.predict(history, history.lastIndex)
     }
 }
@@ -48,8 +48,7 @@ object LotteryKnowledgeBase {
 
     fun init(context: Context) {
         this.context = context
-        // 加载本地知识库数据
-    }
+        // 加载本地知识库数�?    }
 
     fun getHistoryData(): List<VersionHistoryManager.LotteryHistory> {
         // 模拟返回彩票历史数据

@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.relations.NumberRelation
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.relations.NumberRelation
 
 /**
  * 深度关联预测引擎
@@ -15,13 +15,12 @@ class DeepRelationEngine {
     ): Map<Int, List<Pair<Int, Double>>> {
         val predictions = mutableMapOf<Int, MutableList<Pair<Int, Double>>>()
         
-        // 为每个位置生成候选号码 (1-33)
+        // 为每个位置生成候选号�?(1-33)
         (1..6).forEach { position ->
             predictions[position] = mutableListOf()
             val posKey = "pos$position"
             
-            // 计算每个号码的关联得分
-            (1..33).forEach { candidateNum ->
+            // 计算每个号码的关联得�?            (1..33).forEach { candidateNum ->
                 var score = 0.0
                 
                 // 考虑上期各位置号码的影响
@@ -36,8 +35,7 @@ class DeepRelationEngine {
                 }
             }
             
-            // 按得分排序
-            predictions[position]?.sortByDescending { it.second }
+            // 按得分排�?            predictions[position]?.sortByDescending { it.second }
         }
         
         return predictions
@@ -49,8 +47,7 @@ class DeepRelationEngine {
     ): Map<String, Map<Int, Double>> {
         val relationStats = mutableMapOf<String, MutableMap<Int, Double>>()
         
-        // 初始化统计结构
-        (1..6).forEach { pos ->
+        // 初始化统计结�?        (1..6).forEach { pos ->
             relationStats["pos$pos"] = mutableMapOf<Int, Double>().withDefault { 0.0 }
         }
         
@@ -68,8 +65,7 @@ class DeepRelationEngine {
             }
         }
         
-        // 标准化权重
-        relationStats.forEach { (pos, relations) ->
+        // 标准化权�?        relationStats.forEach { (pos, relations) ->
             val total = relations.values.sum().absoluteValue
             if (total > 0) {
                 relations.replaceAll { _, value -> value / total }

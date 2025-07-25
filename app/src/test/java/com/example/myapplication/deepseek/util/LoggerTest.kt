@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.util
+package com.example.lotteryprediction.deepseek.util
 
 import org.junit.Test
 import kotlin.test.assertEquals

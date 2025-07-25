@@ -1,21 +1,19 @@
-package com.example.myapplication.deepseek.task
+package com.example.lotteryprediction.deepseek.task
 
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.example.myapplication.deepseek.data.DataCollectionService
-import com.example.myapplication.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.data.DataCollectionService
+import com.example.lotteryprediction.deepseek.util.LogUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 /**
- * 数据收集工作流
- * 
+ * 数据收集工作�? * 
  * 每日凌晨2点自动执行：
  * 1. 检查新数据
  * 2. 验证数据质量
- * 3. 同步到云端
- */
+ * 3. 同步到云�? */
 class DataCollectionWorkflow(
     context: Context,
     params: WorkerParameters
@@ -27,8 +25,7 @@ class DataCollectionWorkflow(
         LogUtils.i(TAG, "Starting data collection workflow")
         
         return@withContext try {
-            // 1. 获取新数据
-            val newData = fetchNewData()
+            // 1. 获取新数�?            val newData = fetchNewData()
             if (newData.isEmpty()) {
                 LogUtils.i(TAG, "No new data found")
                 return@withContext Result.success()
@@ -49,7 +46,7 @@ class DataCollectionWorkflow(
         }
     }
 
-    private suspend fun fetchNewData(): List<com.example.myapplication.deepseek.model.LotteryRecord> {
+    private suspend fun fetchNewData(): List<com.example.lotteryprediction.deepseek.model.LotteryRecord> {
         // 实现数据获取逻辑
         return emptyList()
     }

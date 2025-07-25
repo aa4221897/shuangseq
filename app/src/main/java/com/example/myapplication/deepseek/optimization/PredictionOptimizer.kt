@@ -1,17 +1,15 @@
-package com.example.myapplication.deepseek.optimization
+package com.example.lotteryprediction.deepseek.optimization
 
-import com.example.myapplication.deepseek.data.LotteryRecord
-import com.example.myapplication.deepseek.model.FactorAnalysisEngine
-import com.example.myapplication.deepseek.model.LotteryAnalysisEngine
-import com.example.myapplication.deepseek.validation.EnhancedBacktestEngine
+import com.example.lotteryprediction.deepseek.data.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.FactorAnalysisEngine
+import com.example.lotteryprediction.deepseek.model.LotteryAnalysisEngine
+import com.example.lotteryprediction.deepseek.validation.EnhancedBacktestEngine
 
 /**
  * 预测优化策略引擎
- * 功能：
- * 1. 自动调整分析参数
+ * 功能�? * 1. 自动调整分析参数
  * 2. 优化因素权重分配
- * 3. 生成最优预测方案
- */
+ * 3. 生成最优预测方�? */
 class PredictionOptimizer(
     private val analysisEngine: LotteryAnalysisEngine,
     private val factorEngine: FactorAnalysisEngine,
@@ -44,8 +42,7 @@ class PredictionOptimizer(
                 )
             )
             
-            // 更新最佳策略
-            if (testResult.hitStats.totalHitRate > bestHitRate) {
+            // 更新最佳策�?            if (testResult.hitStats.totalHitRate > bestHitRate) {
                 bestHitRate = testResult.hitStats.totalHitRate
                 bestStrategy = currentParams
             }

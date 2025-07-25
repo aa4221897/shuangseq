@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek
+package com.example.lotteryprediction.deepseek
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -37,8 +37,7 @@ class DeepSeekTest {
         val service = DeepSeekService(config)
         service.initKnowledgeBase(context)
         
-        // 测试知识库加载
-        val knowledge = service.getKnowledgeBase()
+        // 测试知识库加�?        val knowledge = service.getKnowledgeBase()
         assertNotNull(knowledge)
         assertTrue(knowledge.getLayoutKnowledge().isNotEmpty())
         
@@ -49,8 +48,7 @@ class DeepSeekTest {
 
     @Test
     fun testNetworkUtils() {
-        // 测试网络工具类
-        assertFalse(NetworkUtils.isNetworkAvailable(context))
+        // 测试网络工具�?        assertFalse(NetworkUtils.isNetworkAvailable(context))
     }
 
     @Test

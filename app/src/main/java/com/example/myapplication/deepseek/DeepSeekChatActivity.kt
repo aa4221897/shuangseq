@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek
+package com.example.lotteryprediction.deepseek
 
 import android.graphics.Color
 import android.os.Bundle
@@ -11,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.databinding.ActivityDeepseekChatBinding
-import com.example.myapplication.databinding.ItemChatMessageBinding
-import com.example.myapplication.deepseek.model.ChatMessage
-import com.example.myapplication.R
+import com.example.lotteryprediction.databinding.ActivityDeepseekChatBinding
+import com.example.lotteryprediction.databinding.ItemChatMessageBinding
+import com.example.lotteryprediction.deepseek.model.ChatMessage
+import com.example.lotteryprediction.R
 import kotlinx.coroutines.launch
 
 class DeepSeekChatActivity : AppCompatActivity() {
@@ -25,6 +25,7 @@ class DeepSeekChatActivity : AppCompatActivity() {
     private lateinit var deepSeekClient: DeepSeekClient
     private lateinit var versionHistoryManager: VersionHistoryManager
     private var menu: Menu? = null
+    private val coroutineJobs = mutableListOf<Job>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,14 +36,13 @@ class DeepSeekChatActivity : AppCompatActivity() {
         setupClickListeners()
         
         // 初始化DeepSeek服务
-        val config = DeepSeekConfig(applicationContext)
+        val config = DeepSeekConfig(this)  // 使用Activity context
         deepSeekService = DeepSeekService(config)
         deepSeekClient = DeepSeekClient(config)
         deepSeekService.initKnowledgeBase(this)
         versionHistoryManager = VersionHistoryManager(this)
         
-        // 初始化版本历史
-        lifecycleScope.launch {
+        // 初始化版本历�?        coroutineJobs += lifecycleScope.launch {
             versionHistoryManager.addVersion(
                 code = 1,
                 name = "1.0.0",
@@ -53,7 +53,7 @@ class DeepSeekChatActivity : AppCompatActivity() {
     }
 
     private fun showVersionHistory() {
-        lifecycleScope.launch {
+        coroutineJobs += lifecycleScope.launch {
             try {
                 val history = versionHistoryManager.getHistory()
                 val message = buildString {
@@ -128,7 +128,7 @@ class DeepSeekChatActivity : AppCompatActivity() {
             binding.messageEditText?.text?.clear()
             binding.sendButton?.isEnabled = false
             
-            lifecycleScope.launch {
+            coroutineJobs += lifecycleScope.launch {
                 try {
                     val response = deepSeekClient.chat(message)
                     addMessage(response, isUser = false)
@@ -147,7 +147,7 @@ class DeepSeekChatActivity : AppCompatActivity() {
         addMessage("正在优化预测算法...", isUser = false)
         binding.optimizeButton?.isEnabled = false
         
-        lifecycleScope.launch {
+        coroutineJobs += lifecycleScope.launch {
             try {
                 val (algorithm, params) = deepSeekClient.optimizePrediction(
                     algorithm = "lottery_prediction_v2",
@@ -165,15 +165,15 @@ class DeepSeekChatActivity : AppCompatActivity() {
 
     private fun queryKnowledgeBase() {
         binding.knowledgeButton?.isEnabled = false
-        addMessage("正在查询知识库...", isUser = false)
+        addMessage("正在查询知识�?..", isUser = false)
         
-        lifecycleScope.launch {
+        coroutineJobs += lifecycleScope.launch {
             try {
                 val historyData = LotteryKnowledgeBase.getHistoryData()
                 val message = buildString {
-                    append("最新开奖数据:\n")
+                    append("最新开奖数�?\n")
                     historyData.take(5).forEach { 
-                        append("${it.period}期: ${it.numbers.joinToString()} (${it.date})\n")
+                        append("${it.period}�? ${it.numbers.joinToString()} (${it.date})\n")
                     }
                     append("\n输入具体期号查询详情")
                 }
@@ -192,7 +192,7 @@ class DeepSeekChatActivity : AppCompatActivity() {
         menuItem?.isEnabled = false
         addMessage("正在分析彩票数据...", isUser = false)
         
-        lifecycleScope.launch {
+        coroutineJobs += lifecycleScope.launch {
             try {
                 val response = deepSeekClient.analyzeData(
                     dataType = "lottery",
@@ -223,6 +223,14 @@ class DeepSeekChatActivity : AppCompatActivity() {
     }
 }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        // 取消所有未完成的协程任�?        coroutineJobs.forEach { it.cancel() }
+        // 清理资源
+        binding.chatRecyclerView.adapter = null
+        menu = null
+    }
+}
 class ChatAdapter(private val messages: List<ChatMessage>) : 
     RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 

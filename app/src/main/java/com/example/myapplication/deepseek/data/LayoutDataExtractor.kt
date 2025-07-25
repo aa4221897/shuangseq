@@ -1,11 +1,10 @@
-package com.example.myapplication.deepseek.data
+package com.example.lotteryprediction.deepseek.data
 
 import android.content.res.Resources
 import org.xmlpull.v1.XmlPullParser
 
 /**
- * 布局数据提取器
- */
+ * 布局数据提取�? */
 class LayoutDataExtractor(private val resources: Resources) {
     
     fun extractLotteryData(): List<LotteryLayoutInfo> {
@@ -28,11 +27,11 @@ class LayoutDataExtractor(private val resources: Resources) {
                         when (parser.name) {
                             "TextView" -> {
                                 val text = parser.getAttributeValue(null, "text")
-                                if (text?.contains("双色球") == true) {
+                                if (text?.contains("双色�?) == true) {
                                     lotteryInfo = LotteryLayoutInfo(
                                         layoutId = layoutId,
                                         displayType = when {
-                                            text.contains("第") -> "期号显示"
+                                            text.contains("�?) -> "期号显示"
                                             else -> "标题显示"
                                         },
                                         containsResultView = parser.name == "LotteryResultView2"

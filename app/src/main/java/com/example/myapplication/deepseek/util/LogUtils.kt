@@ -1,4 +1,4 @@
-package com.example.myapplication.deepseek.util
+package com.example.lotteryprediction.deepseek.util
 
 import android.util.Log
 

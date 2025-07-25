@@ -29,7 +29,7 @@ class ApiKeyRefreshTest {
         // 模拟API密钥过期
         tokenManager.saveApiKey("expired_key", -1)
         
-        // 模拟服务返回新密钥
+        // 模拟服务返回新密�?
         `when`(mockApiKeyService.getApiKey(any())).thenReturn(
             Response.success(ApiKeyResponse("new_key", 3600))
         )
@@ -39,7 +39,7 @@ class ApiKeyRefreshTest {
         app.apiKeyService = mockApiKeyService
         app.checkAndRefreshApiKey()
 
-        // 验证密钥已更新
+        // 验证密钥已更�?
         assertEquals("new_key", tokenManager.getApiKey())
     }
 
@@ -48,7 +48,7 @@ class ApiKeyRefreshTest {
         // 设置有效密钥
         tokenManager.saveApiKey("valid_key", 3600)
         
-        // 验证未调用刷新服务
+        // 验证未调用刷新服�?
         verify(mockApiKeyService, never()).getApiKey(any())
     }
 }

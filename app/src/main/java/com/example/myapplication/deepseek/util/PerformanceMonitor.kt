@@ -1,20 +1,17 @@
-package com.example.myapplication.deepseek.util
+package com.example.lotteryprediction.deepseek.util
 
 import android.util.Log
-import com.example.myapplication.deepseek.model.LotteryAnalysisModel
-import com.example.myapplication.deepseek.model.LotteryRecord
+import com.example.lotteryprediction.deepseek.model.LotteryAnalysisModel
+import com.example.lotteryprediction.deepseek.model.LotteryRecord
 import kotlin.system.measureNanoTime
 
 /**
  * 性能监控工具
  * 
- * 功能：
- * 1. 记录各模型执行时间
- * 2. 生成性能报告
+ * 功能�? * 1. 记录各模型执行时�? * 2. 生成性能报告
  * 3. 检测性能异常
  * 
- * 使用示例：
- * ```
+ * 使用示例�? * ```
  * PerformanceMonitor.runWithBenchmark(model, history) { result ->
  *    // 使用预测结果
  * }

@@ -1,6 +1,6 @@
-package com.example.myapplication.deepseek.model
+package com.example.lotteryprediction.deepseek.model
 
-import com.example.myapplication.deepseek.util.LogUtils
+import com.example.lotteryprediction.deepseek.util.LogUtils
 import java.util.ArrayList
 import java.util.Collections
 import java.util.Date
@@ -13,14 +13,12 @@ class KillerPredictor(private val historyData: List<LotteryRecord>, private val 
     private var coldNumbers: List<Int> = calculateColdHotNumbers()
 
     fun predictKillerNumbers(currentIndex: Int): List<Int> {
-        // 边界检查
-        if (currentIndex < lookbackPeriod) {
+        // 边界检�?        if (currentIndex < lookbackPeriod) {
             val adjustedLookback = maxOf(5, currentIndex)
             LogUtils.w(tag, "Adjusted lookback period from $lookbackPeriod to $adjustedLookback")
         }
 
-        // 获取冷号杀号
-        val coldKillers = coldNumbers.take(10)
+        // 获取冷号杀�?        val coldKillers = coldNumbers.take(10)
 
         // 排除近期出现过的冷号
         val recentAppeared = getRecentAppearedNumbers(currentIndex)
@@ -36,8 +34,7 @@ class KillerPredictor(private val historyData: List<LotteryRecord>, private val 
     }
 
     private fun calculateColdHotNumbers(): List<Int> {
-        if (historyData.isEmpty()) return (1..33).take(10) // 默认值
-        
+        if (historyData.isEmpty()) return (1..33).take(10) // 默认�?        
         val frequencyMap = mutableMapOf<Int, Int>().apply {
             (1..33).forEach { put(it, 0) }
         }

@@ -1,7 +1,7 @@
-package com.example.myapplication.deepseek.ui
+package com.example.lotteryprediction.deepseek.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.myapplication.deepseek.model.CoverageResult
+import com.example.lotteryprediction.deepseek.model.CoverageResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -52,11 +52,10 @@ class LotteryViewModelTest {
 
     @Test
     fun testCacheBehavior() = runTest {
-        // 第一次加载
-        viewModel.loadData()
+        // 第一次加�?        viewModel.loadData()
         testDispatcher.scheduler.advanceUntilIdle()
         
-        // 第二次加载(应使用缓存)
+        // 第二次加�?应使用缓�?
         viewModel.loadData()
         testDispatcher.scheduler.advanceUntilIdle()
         
@@ -66,8 +65,7 @@ class LotteryViewModelTest {
 
     @Test
     fun testForceRefresh() = runTest {
-        // 第一次加载
-        viewModel.loadData()
+        // 第一次加�?        viewModel.loadData()
         testDispatcher.scheduler.advanceUntilIdle()
         
         // 强制刷新
