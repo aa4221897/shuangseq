@@ -1,18 +1,13 @@
 #!/bin/bash
-COVERAGE_THRESHOLD=80
+MIN_COVERAGE=80
 COVERAGE_FILE="app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
 
-if [ ! -f "$COVERAGE_FILE" ]; then
-    ./gradlew jacocoTestReport
-fi
+ACTUAL_COVERAGE=$(grep -oPm1 '(?<=<counter type="INSTRUCTION" missed=")\d+' "$COVERAGE_FILE" | 
+                  awk '{print ($2/($1+$2))*100}')
 
-COVERAGE=$(xmllint --xpath 'string(//report/counter[@type="INSTRUCTION"]/@missed)' $COVERAGE_FILE)
-TOTAL=$(xmllint --xpath 'string(//report/counter[@type="INSTRUCTION"]/@covered)' $COVERAGE_FILE)
-COVERAGE_RATE=$(( 100 * $TOTAL / ($COVERAGE + $TOTAL) ))
-
-if [ $COVERAGE_RATE -lt $COVERAGE_THRESHOLD ]; then
-    echo "代码覆盖率不足$COVERAGE_THRESHOLD%，当前为$COVERAGE_RATE%"
-    exit 1
+if (( $(echo "$ACTUAL_COVERAGE < $MIN_COVERAGE" | bc -l) )); then
+  echo "❌ 覆盖率不足 ${ACTUAL_COVERAGE}% < ${MIN_COVERAGE}%"
+  exit 1
 else
-    echo "代码覆盖率达标：$COVERAGE_RATE%"
+  echo "✅ 覆盖率达标 ${ACTUAL_COVERAGE}% ≥ ${MIN_COVERAGE}%"
 fi
